@@ -1,0 +1,188 @@
+.container-formulario{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: -1;
+    opacity: 0;
+}
+
+.container-formulario.ativo{
+    z-index: 2;
+    opacity: 1;   
+}
+
+.formulario-agendamento{
+    width: 700px;
+    height: 600px;
+    background: #fff;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.icon-fechar{
+    width: 25px;
+    position: absolute;
+    right: 15px;
+    top: 20px;
+    cursor: pointer;
+}
+
+.etapa-formulario-agendamento{
+    width: 90%;
+    height: 97.5%;
+}
+
+.cabecalho-formulario, .conteudo-formulario, .botoes-formulario{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+}
+
+.conteudo-formulario{
+    height: 70%;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.botoes-formulario{
+    height: 20%;
+    justify-content: right;
+}
+
+/*Header*/
+.texto-header-formulario{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    color: rgb(48, 48, 48);
+    font-weight: bold;
+    margin: 0;
+}
+
+/*Content*/
+.divisor, .divisor-2{
+    width: 40%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.linha-cep{
+    width: calc(100%);
+    height: 40px;
+    position: relative;
+}
+
+.btn-buscar{
+    width: 80px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+}
+
+.linha-data-nascimento{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.select-data-nascimento{
+    width: 30%;
+}
+
+.linha-escolha{
+    width: 55%;
+    display: flex;
+}
+
+.escolha-avaliacao-form{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 15px;
+    color: rgb(103, 103, 103);
+    margin: 0px 20px 0px 5px;
+}
+
+.input-radio{
+    height: 20px;
+    margin: 0;
+}
+
+.textarea-detalhe{
+    padding-top: 10px;
+    height: 90px;
+}
+
+/*Footer*/
+.btn-proximo, .btn-anterior, .btn-concluir-cadastro{
+    width: 130px;
+    height: 45px;
+    
+}
+
+.btn-anterior{
+    margin-right: 10px;
+}
+
+.btn-concluir-cadastro{
+    background: rgb(15, 227, 142);
+}
+
+.btn-concluir-cadastro:hover{
+    background: rgb(2, 199, 120);
+}
+
+
+@media screen and (max-width: 700px){
+    .formulario-agendamento{
+        width: 90%;
+        height: 700px;
+    }
+
+    /*Os 3 elementos principais*/
+    .cabecalho-formulario{
+        height: 7.5%;
+    }
+
+    .conteudo-formulario{
+        height: 82.5%;
+        align-items: center;
+    }
+
+    .botoes-formulario{
+        height: 10%;
+    }
+
+
+    /*Conteudo*/
+    .divisor, .divisor-2{
+        width: 100%;
+        justify-content: left;
+    }
+
+    .linha-escolha{
+        width: 25%;
+    }
+
+
+    /*Footer*/
+    .btn-proximo, .btn-anterior, .btn-concluir-cadastro{
+        width: 47.5%;
+        margin: 0;
+    }
+
+    .btn-anterior{
+        margin-right: auto;
+    }
+}
+

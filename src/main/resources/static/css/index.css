@@ -1,0 +1,43 @@
+.conteudo-principal{
+    width: 75%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.slogan-conteudo-principal{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 40px;
+    color: rgb(71, 71, 71);
+    margin: 0;
+    font-weight: bold;
+    line-height: 35px;
+}
+
+.texto-conteudo-principal{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 18.5px;
+    color: rgb(69, 69, 69);
+    margin: 20px 0 40px 0;
+}
+
+.btn-agendar{
+    width: 300px;
+    height: 60px;
+    font-size: 18px;
+    border: none;
+    border-radius: 6px;
+    background: rgb(170, 0, 255);
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 15%), 0 8px 16px rgb(0 0 0 / 15%);
+}
+
+@media screen and (max-width: 700px){
+    .btn-agendar{
+        width: 100%;
+    }
+}
