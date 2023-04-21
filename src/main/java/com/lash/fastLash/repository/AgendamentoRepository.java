@@ -10,6 +10,6 @@ import java.util.Optional;
 @Repository
 public interface AgendamentoRepository extends JpaRepository<AgendamentoModel, Long> {
 
-    @Query(value = "select * from clientes where codigo = ?", nativeQuery = true)
+    @Query(value = "select * from agendamentos where codigo = ?", nativeQuery = true)
     Optional<AgendamentoModel> buscarUSuarioPorID(Long codigo);
 }

@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Table(name = "clientes")
+@Table(name = "agendamentos")
 @Entity
 public class AgendamentoModel {
 
