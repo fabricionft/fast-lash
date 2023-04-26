@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista agendamentos</title>
+
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/messageBox.css">
+    <link rel="stylesheet" href="css/variaveis.css">
+    <link rel="stylesheet" href="css/agendamentos.css">
+
+    <script
+            src="https://code.jquery.com/jquery-3.6.1.min.js"
+            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+            crossorigin="anonymous" defer>
+    </script>
+    <script src="js/geral.js" defer></script>
+    <script src="js/admin.js" defer></script>
+    <script src="js/agendamentos.js" defer></script>
+ </head>
+
+ <body>
+  <header class="header-principal">
+      <div class="conteudo-header">
+          <a href="menuAdmin.html">
+              <img src="img/acima.png" width="30px">
+          </a>
+      </div>
+
+      <div class="margem-header"></div>
+  </header>
+
+  <main class="container-conteudo-principal">
+      <div class="container-agendamentos">
+          <div class="painel-agendamentos">
+              <div class="margem-painel">
+                  <header class="botoes-painel">
+                      <select class="select-agendamentos" id="filtro" onchange="alterarFiltro(this.value)">
+                          <option value="Pendente">Pendentes</option>
+                          <option value="Concluido">Concluídos</option>
+                      </select>
+
+                      <div class="linha-pesquisa">
+                          <input type="text" class="input-pesquisar"
+                                 id="pesquisar" placeholder="Digite um nome">
+                          <img src="img/lupa.png" class="icon-lupa" onclick="pesquisarAgendamentoPorNome()">
+                      </div>
+                  </header>
+
+                  <div class="conteudo-painel" id="painel">
+                      <div class="linha">
+                          <div class="coluna-principal-1">
+                              <p class="subtitulo-conteudo-agendamentos">Data</p>
+                          </div>
+
+                          <div class="coluna-principal-2">
+                              <p class="subtitulo-conteudo-agendamentos">ID</p>
+                          </div>
+
+                          <div class="coluna-principal-3">
+                              <p class="subtitulo-conteudo-agendamentos">Nome</p>
+                          </div>
+
+                          <div class="coluna-principal-4">
+                              <p class="subtitulo-conteudo-agendamentos">Celular</p>
+                          </div>
+
+                          <div class="coluna-principal-5">
+                              <p class="subtitulo-conteudo-agendamentos">Ações</p></div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      </div>
+
+  </main>
+
+  <!--Message Box-->
+  <div class="esconderMessageBox" id="esconder">
+      <div class="message-box" id="mensagem">
+          <div class="texto-message-box" id="textoMensagem"></div>
+          <footer class="footer-message-box" id="btnMensagem">
+              <button class="btn-message-box" id="btnMessage" onclick="fecharMessageBox()">Ok</button>
+          </footer>
+      </div>
+  </div>
+ </body>
+</html>

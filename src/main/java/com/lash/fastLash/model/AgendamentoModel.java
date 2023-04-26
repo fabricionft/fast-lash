@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Table(name = "agendamentos")
@@ -13,6 +15,12 @@ public class AgendamentoModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long codigo;
+
+    @Column(nullable = false)
+    private String data;
+
+    @Column(length = 20, nullable = false)
+    private String status;
 
     //Dados pessoais
     @Column(length = 100, nullable = false)
@@ -36,36 +44,12 @@ public class AgendamentoModel {
     @Column(length = 11, nullable = false)
     private String rg;
 
-
-    //Dados de endereço
     @Column(length = 250, nullable = false)
     private String endereco;
 
-
     //Dados avaliativos
-    @Column(length = 3, nullable = false)
-    private String estaDeRimel;
+    private String[] respostas;
 
-    @Column(length = 3, nullable = false)
-    private String estaGravida;
-
-    @Column(length = 3, nullable = false)
-    private String possuiAlergia;
-
-    @Column(length = 3, nullable = false)
-    private String possuiProblemaNaTireoide;
-
-    @Column(length = 3, nullable = false)
-    private String possuiProblemaOcular;
-
-    @Column(length = 3, nullable = false)
-    private String estaEmTratamentoOncologico;
-
-    @Column(length = 3, nullable = false)
-    private String dormeDeLado;
-
-
-    //Detalhes dados avaliativos
     @Column(length = 200, nullable = false)
     private String detalhesAlergia;
 

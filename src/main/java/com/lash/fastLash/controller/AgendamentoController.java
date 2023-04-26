@@ -17,18 +17,38 @@ public class AgendamentoController {
 
     @GetMapping
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> listarAgendamentos(){
+    public ResponseEntity<?> listarAgendamentos() {
         return new ResponseEntity<>(agendamentoService.listarAgendamentos(), HttpStatus.OK);
     }
 
     @GetMapping(path = "/{codigo}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> buscarAgendamentoPorID(@PathVariable Long codigo){
+    public ResponseEntity<?> buscarAgendamentoPorID(@PathVariable Long codigo) {
         return new ResponseEntity<>(agendamentoService.buscarAgendamentoPorID(codigo), HttpStatus.OK);
     }
 
+    @GetMapping(path = "/nome/{nome}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> buscarAgendamentoPorNome(@PathVariable String nome) {
+        return new ResponseEntity<>(agendamentoService.buscarAgendamentoPorNome(nome), HttpStatus.OK);
+    }
+
     @PostMapping
-    public ResponseEntity<?> salvarAgendamento(@RequestBody AgendamentoModel agendamento){
-        return  new ResponseEntity<>(agendamentoService.salvarAgendamento(agendamento), HttpStatus.CREATED);
+    public ResponseEntity<?> salvarAgendamento(@RequestBody AgendamentoModel agendamento) {
+        return new ResponseEntity<>(agendamentoService.salvarAgendamento(agendamento), HttpStatus.CREATED);
+    }
+
+    @PutMapping(path = "/alterarStatus/{codigo}/{acao}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> alterarStatusAgendamento(@PathVariable Long codigo,
+                                                      @PathVariable Integer acao){
+        return  new ResponseEntity<>(agendamentoService.alterarStatusAgendamento(codigo, acao), HttpStatus.OK);
+    }
+
+    @DeleteMapping
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> excluirAgendamentos(){
+        return new ResponseEntity<>(agendamentoService.excluirAgendamentos(), HttpStatus.OK);
     }
 }
+

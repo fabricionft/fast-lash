@@ -105,6 +105,15 @@ function agendar(){
     let detalheProblemaOcular = ($('#textoDetalheProblemaOcular').val().length) ? $('#textoDetalheProblemaOcular').val() : "Não possui problema ocular";
     let detalheLado = ($('#textoDetalheLado').val().length) ? $('#textoDetalheLado').val() : "Não dorme de lado";
 
+    listaDeRespostas = [$('[name="estaDeRimel"]:checked').val(),
+                        $('[name="estaGravida"]:checked').val(),
+                        $('[name="procedimentoRecenteNosOlhos"]:checked').val(),
+                        $('[name="possuiAlergia"]:checked').val(),
+                        $('[name="possuiProblemaNaTireoide"]:checked').val(),
+                        $('[name="possuiProblemaOcular"]:checked').val(),
+                        $('[name="estaEmTratamentoOncologico"]:checked').val(),
+                        $('[name="dormeDeLado"]:checked').val()];
+
    $.ajax({
         method: "POST",
         url: "/agendamento",
@@ -121,25 +130,50 @@ function agendar(){
             //Ddaos de endereço
             endereco: endereco,
             //Dados avaliativos
-            estaDeRimel: $('[name="estaDeRimel"]:checked').val(),
-            estaGravida: $('[name="estaGravida"]:checked').val(),
-            possuiAlergia: $('[name="possuiAlergia"]:checked').val(),
-            possuiProblemaNaTireoide: $('[name="possuiProblemaNaTireoide"]:checked').val(),
-            possuiProblemaOcular: $('[name="possuiProblemaOcular"]:checked').val(),
-            estaEmTratamentoOncologico: $('[name="estaEmTratamentoOncologico"]:checked').val(),
-            dormeDeLado: $('[name="dormeDeLado"]:checked').val(),
+            respostas: listaDeRespostas,
             //Detlhe dos dados avaliativos
             detalhesAlergia: detalheAlergia,
             detalhesProblemaOcular: detalheProblemaOcular,
             detalhesLado: detalheLado,
             detalhesProcedimentoAdcional: detalheProcedimentoAdcional
-
         }),
         contentType: "application/json; charset-utf8",
         success: function (dados){
-            gerarMessageBox(1, "Agendamento realizado com sucesso!", "Prosseguir");
+            console.log(dados.codigo);
+            gerarMessageBox(1, "Agendamento realizado com sucesso! Em breve entraremos em contato<br><br>Código do agendamento: "+dados.codigo, "Prosseguir");
         }
     }).fail(function(err){
         gerarMessageBox(2, err.responseJSON.message, "Tentar novamente");
     });
+}
+
+function mudarTipoInput(){
+    if($('#senha').attr('type') == "password"){
+        $('#senha').attr('type', "text");
+        $('#imgOlho').attr('src', "img/olhoF.png")
+    }else{
+        $('#senha').attr('type', "password");
+        $('#imgOlho').attr('src', "img/olho.png")
+    }
+}
+
+function fazerLogin(){
+    $.ajax({
+        method: "POST",
+        url: "/admin/login/"+$('#usuario').val()+"/"+$('#senha').val(),
+        success: function (dados){
+            if(dados.role == "ROLE_ADMIN"){
+                adcionarSessaoDeLogin(dados);
+                location.href="menuAdmin.html";
+            }else gerarMessageBox(2, "Desculpe, seu usuário não possui o papel de administrador!", "Tentar novamente");
+        }
+    }).fail(function(err){
+        tratarErro(err);
+    });
+}
+
+function adcionarSessaoDeLogin(dados){
+    localStorage.setItem('sessao', "logado");
+    localStorage.setItem('token', dados.token);
+    localStorage.setItem('role', dados.role);
 }

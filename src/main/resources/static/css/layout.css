@@ -4,7 +4,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: rgb(183, 0, 255, 0.05);
+    background: rgba(140, 0, 195, 0.04);
 }
 
 .header-principal{
@@ -33,15 +33,38 @@ body{
     height: 10%;
 }
 
-main{
+.container-conteudo-principal{
     width: 100%;
-    height: 750px;
     display: flex;
     justify-content: center;
 }
 
 .footer-principal{
     width: 100%;
-    height: 300px;
-    background-image: linear-gradient(to right, rgb(255, 176, 192), rgb(170, 0, 255));
+    height: 175px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(170, 0, 255);
+}
+
+.divisor-footer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.titulo-footer{
+    width: 100%;
+    margin: 0 0 20px 0;
+    text-align: center;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 27px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.icon-footer{
+    width: 30px;
+    margin: 0 7.5px;
 }

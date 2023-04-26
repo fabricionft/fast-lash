@@ -1,0 +1,93 @@
+.container-detalhe-agendamento{
+    width: 90%;
+    min-height: 100px;
+    height: auto;
+    margin: 50px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    border-radius: 10px;
+    background: #fff;
+}
+
+.margem-detalhe-agendamento{
+    width: 92.5%;
+    margin: 40px 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.dados-pessoais, .dados-avaliativos{
+    width: 50%;
+}
+
+.conteudo{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/*Dados pessoais*/
+.subtitulo-conteudo, .subtitulo-conteudo-1{
+    color: rgb(150, 0, 225);
+    font-weight: bold;
+}
+
+.subtitulo-conteudo-1{margin-top: 30px;}
+.texto-conteudo{margin: 5px 0 20px 0; width: 80%}
+
+/*Dados avaliativos*/
+.linha-pergunta{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.pergunta, .resposta{
+    display: flex;
+    width: 85%;
+    align-items: center;
+}
+
+.resposta{
+    width: 15%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.resposta-selecionada{
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    background: rgb(0, 222, 141);
+}
+
+/*Botoes*/
+.botoes-detalhes-agendamento{
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    margin-top: 10px;
+}
+
+.btn-concluir-agendamento{
+    width: 200px;
+    height: 45px;
+}
+
+@media screen and (max-width: 800px){
+    .margem-detalhe-agendamento{
+        flex-direction: column;
+        width: 90%;
+    }
+
+    .dados-avaliativos, .dados-pessoais{
+        width: 100%;
+    }
+
+    .linha-pergunta:nth-child(1){margin-top: 15px;}
+
+    .btn-concluir-agendamento{width: 100%;}
+}

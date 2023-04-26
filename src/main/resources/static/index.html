@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+ <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Agendamento</title>
 
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/messageBox.css">
@@ -20,22 +20,12 @@
      <script src="js/formularios.js" defer></script>
      <script src="js/validacoes.js" defer></script>
      <script src="js/geral.js" defer></script>
-</head>
-<body>
+ </head>
 
-    <header class="header-principal">
-        <div class="conteudo-header">
-            <img src="img/botao-de-menu-de-tres-linhas-horizontais.png" width="25px">
-        </div>
-
-        <div class="margem-header">
-
-        </div>
-    </header>
-
-    <main>
+ <body>
+    <main class="container-conteudo-principal">
         <div class="conteudo-principal">
-            <p class="slogan-conteudo-principal">Deseja aumentar sua autoestima?</p>
+            <h1 class="slogan-conteudo-principal">Deseja aumentar sua autoestima?</h1>
 
             <p class="texto-conteudo-principal">Agende seu alongamento no botão abaixo</p>
 
@@ -44,7 +34,17 @@
     </main>
 
     <footer class="footer-principal">
+        <div class="divisor-footer">
+            <h1 class="titulo-footer">Contatos</h1>
 
+            <a href="https://wa.me/5519981377802">
+                <img src="img/whatsapp-removebg-preview.png" class="icon-footer">
+            </a>
+
+            <a href="https://www.instagram.com/lash_isis">
+                <img src="img/instagram-removebg-preview.png" class="icon-footer">
+            </a>
+        </div>
     </footer>
 
     <div class="container-formulario" id="containerCadastro">
@@ -113,7 +113,7 @@
                     <div class="divisor">
                         <label>RG</label>
                         <input type="text"
-                        name="inputFormulario-1" id="rg" placeholder="Digite seu RG" maxlength="11" >
+                        name="inputFormulario-1" id="rg" placeholder="Digite seu RG" maxlength="9" >
                     </div>
 
                     <div class="divisor">
@@ -232,18 +232,18 @@
                     </div>
 
                     <div class="divisor-2">
-                        <label>Fez algum procedimento recentemente nos olhos?</label>
-                        <div class="linha-escolha">
-                            <input type="radio" class="input-radio" name="procedimentoRecenteNosOlhos" value="sim"><p class="escolha-avaliacao-form">Sim</p>
-                            <input type="radio" class="input-radio" name="procedimentoRecenteNosOlhos" value="nao"><p class="escolha-avaliacao-form">Não</p>
-                        </div>
-                    </div>
-
-                    <div class="divisor-2">
                         <label>É gestante?</label>
                         <div class="linha-escolha">
                             <input type="radio" class="input-radio" name="estaGravida" value="sim"><p class="escolha-avaliacao-form">Sim</p>
                             <input type="radio" class="input-radio" name="estaGravida" value="nao"><p class="escolha-avaliacao-form">Não</p>
+                        </div>
+                    </div>
+
+                    <div class="divisor-2">
+                        <label>Fez algum procedimento recentemente nos olhos?</label>
+                        <div class="linha-escolha">
+                            <input type="radio" class="input-radio" name="procedimentoRecenteNosOlhos" value="sim"><p class="escolha-avaliacao-form">Sim</p>
+                            <input type="radio" class="input-radio" name="procedimentoRecenteNosOlhos" value="nao"><p class="escolha-avaliacao-form">Não</p>
                         </div>
                     </div>
 
@@ -302,7 +302,7 @@
 
                 <div class="conteudo-formulario">
                     <div class="divisor">
-                        <label>Existe algum procedimento que julgue necessário informar ao profissional antes do procedimento?</label>
+                        <label>Existe algum procedimento que julgue necessário informar ao profissional antes do procedimento? (opcional)</label>
                         <textarea class="textarea-detalhe" id="textoDetalheProcedimentoAdcional"></textarea>
                     </div>
 
@@ -318,7 +318,11 @@
 
                     <div class="divisor" id="detalheLado">
                         <label>De qual lado você dorme?</label>
-                        <input type="text" id="textoDetalheLado"></textarea>
+                        <select id="textoDetalheLado">
+                            <option value="Ambos">Ambos</option>
+                            <option value="Apenas direito">Apenas direito</option>
+                            <option value="Apenas esquerdo">Apenas esquerdo</option>
+                        </select>
                     </div>
                 </div>
 
@@ -339,5 +343,5 @@
             </footer>
         </div>
     </div>
-</body>
+ </body>
 </html>

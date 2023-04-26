@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista agendamentos</title>
+
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/messageBox.css">
+    <link rel="stylesheet" href="css/variaveis.css">
+    <link rel="stylesheet" href="css/detalheAgendamentos.css">
+
+    <script
+            src="https://code.jquery.com/jquery-3.6.1.min.js"
+            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+            crossorigin="anonymous" defer>
+    </script>
+    <script src="js/geral.js" defer></script>
+    <script src="js/detalhesAgendamento.js" defer></script>
+</head>
+<body>
+
+<header class="header-principal">
+    <div class="conteudo-header">
+        <a href="agendamentos.html">
+            <img src="img/acima.png" class="icon-header">
+        </a>
+    </div>
+
+    <div class="margem-header"></div>
+</header>
+
+<main class="container-conteudo-principal">
+    <div class="container-detalhe-agendamento">
+        <div class="margem-detalhe-agendamento">
+            <div class="dados-pessoais">
+                <!--<header class="titulo-dados">
+                    <h1>Dados pessoais</h1>
+                </header>  -->
+
+                <div class="conteudo">
+                    <p class="subtitulo-conteudo">Data</p>
+                    <p class="texto-conteudo" id="dataAgendamento">XXX</p>
+
+                    <p class="subtitulo-conteudo">Nome</p>
+                    <p class="texto-conteudo" id="nome">XXX</p>
+
+                    <p class="subtitulo-conteudo">Data nascimento</p>
+                    <p class="texto-conteudo" id="dataNascimento">XXX</p>
+
+                    <p class="subtitulo-conteudo">Profissão</p>
+                    <p class="texto-conteudo" id="profissao">XXX</p>
+
+                    <p class="subtitulo-conteudo">Celular</p>
+                    <p class="texto-conteudo" id="celular">XXx</p>
+
+                    <p class="subtitulo-conteudo">Email</p>
+                    <p class="texto-conteudo" id="email">XXX</p>
+
+                    <p class="subtitulo-conteudo">CPF</p>
+                    <p class="texto-conteudo" id="cpf">XXX</p>
+
+                    <p class="subtitulo-conteudo">RG</p>
+                    <p class="texto-conteudo" id="rg">XXX</p>
+
+                    <p class="subtitulo-conteudo">Endereço</p>
+                    <p class="texto-conteudo" id="endereco">XXX</p>
+                </div>
+            </div>
+
+            <div class="dados-avaliativos">
+                <div class="conteudo">
+                    <div class="linha-pergunta">
+                        <div class="pergunta">
+                            <p>Está de rímel?</p>
+                        </div>
+
+                        <div class="resposta"><span class="resposta-selecionada" name="respostaSelecionada"></span></div>
+                    </div>
+
+                    <div class="linha-pergunta">
+                        <div class="pergunta">
+                            <p>É gestante?</p>
+                        </div>
+
+                        <div class="resposta"><span class="resposta-selecionada" name="respostaSelecionada"></span></div>
+                    </div>
+
+                    <div class="linha-pergunta">
+                        <div class="pergunta">
+                            <p>Fez algum procedimento recentemente nos olhos?</p>
+                        </div>
+
+                        <div class="resposta"><span class="resposta-selecionada" name="respostaSelecionada"></span></div>
+                    </div>
+
+
+                    <div class="linha-pergunta">
+                        <div class="pergunta">
+                            <p>Possui alergia à esmaltes/cométicos/cianoacrilato?</p>
+                        </div>
+
+                        <div class="resposta"><span class="resposta-selecionada" name="respostaSelecionada"></span></div>
+                    </div>
+
+                    <div class="linha-pergunta">
+                        <div class="pergunta">
+                            <p>Possui problemas na tireóide?</p>
+                        </div>
+
+                        <div class="resposta"><span class="resposta-selecionada" name="respostaSelecionada"></span></div>
+                    </div>
+
+                    <div class="linha-pergunta">
+                        <div class="pergunta">
+                            <p>Possui glaucoma/blefarite/algum problema ocular?</p>
+                        </div>
+
+                        <div class="resposta"><span class="resposta-selecionada" name="respostaSelecionada"></span></div>
+                    </div>
+
+                    <div class="linha-pergunta">
+                        <div class="pergunta">
+                            <p>Está em tratamento oncológico?</p>
+                        </div>
+
+                        <div class="resposta"><span class="resposta-selecionada" name="respostaSelecionada"></span></div>
+                    </div>
+
+                    <div class="linha-pergunta">
+                        <div class="pergunta">
+                            <p>Dorme de lado?</p>
+                        </div>
+
+                        <div class="resposta"><span class="resposta-selecionada" name="respostaSelecionada"></span></div>
+                    </div>
+
+                    <p class="subtitulo-conteudo-1">Detalhes alergia</p>
+                    <p class="texto-conteudo" id="detalheAlergia">não possui</p>
+
+                    <p class="subtitulo-conteudo">Detalhes problema ocular</p>
+                    <p class="texto-conteudo" id="detalheProblemaOcular">não possui</p>
+
+                    <p class="subtitulo-conteudo">Lado de dormir</p>
+                    <p class="texto-conteudo" id="detalheLado">esquerdo</p>
+
+                    <p class="subtitulo-conteudo">Procedimento adcional</p>
+                    <p class="texto-conteudo" id="detalheProcedimentoAdcional">não será necessário</p>
+                </div>
+            </div>
+
+            <div class="botoes-detalhes-agendamento">
+                <button class="btn-concluir-agendamento" name="btnAlterarStatus" onclick="alterarStatus(1)">Marcar como concluído</button>
+                <button class="btn-concluir-agendamento" name="btnAlterarStatus" onclick="alterarStatus(2)">Marcar como pendente</button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!--Message Box-->
+<div class="esconderMessageBox" id="esconder">
+    <div class="message-box" id="mensagem">
+        <div class="texto-message-box" id="textoMensagem"></div>
+        <footer class="footer-message-box" id="btnMensagem">
+            <button class="btn-message-box" id="btnMessage" onclick="fecharMessageBox()">Ok</button>
+        </footer>
+    </div>
+</div>
+</body>
+</html>

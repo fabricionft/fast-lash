@@ -1,3 +1,20 @@
+p, a{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 15px;
+    color: rgb(106, 106, 106);
+    margin: 0;
+    text-decoration: none;
+}
+
+h1{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 25px;
+    font-weight: bold;
+    color: #3f3c3f;
+    margin: 0;
+}
+
+
 button{
     border: none;
     background: rgb(170, 0, 255);
@@ -35,4 +52,9 @@ select{
 
 input:hover{
     border: 1px solid rgb(170, 0, 255);
+}
+
+.icon-header{
+    width: 32.5px;
+    cursor: pointer;
 }

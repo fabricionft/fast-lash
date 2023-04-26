@@ -43,6 +43,11 @@ function validarEtapa1(){
             quantidadeDeErros++;
         }
 
+        if($('#rg').val().length != 9)  {
+            erros.push("Por favor digite o RG completo");
+            quantidadeDeErros++;
+        }
+
         if($('#cpf').val().length != 11)  {
             erros.push("Por favor digite o CPF completo");
             quantidadeDeErros++;
