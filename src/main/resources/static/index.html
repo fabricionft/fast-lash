@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color">
     <title>Agendamento</title>
 
     <link rel="stylesheet" href="css/layout.css">
@@ -20,36 +21,43 @@
      <script src="js/formularios.js" defer></script>
      <script src="js/validacoes.js" defer></script>
      <script src="js/geral.js" defer></script>
+     <script src="js/temas.js"></script>
  </head>
 
  <body>
     <main class="container-conteudo-principal">
+        <header class="header-tema">
+            <input type="checkbox" class="checkbox" id="check"/>
+            <label class="trocar-tema" for="check" onclick="alterarTema()">
+                <img src="img/lua.png" class="ab" width="15px">
+                <img src="img/sol.png" class="ab" width="15px">
+                <div class="circulo" id="circulo"></div>
+            </label>
+        </header>
+
         <div class="conteudo-principal">
-            <h1 class="slogan-conteudo-principal">Deseja aumentar sua autoestima?</h1>
+            <h1 class="slogan-conteudo-principal">Deseja aumentar</h1>
+            <h1 class="slogan-conteudo-principal">sua autoestima?</h1>
 
             <p class="texto-conteudo-principal">Agende seu alongamento no botão abaixo</p>
 
             <button type="button" class="btn-agendar" onclick="abrirFormulario()">Agende aqui</button>
         </div>
+
+        <footer class="footer-contatos">
+            <a href="https://wa.me/5519981377802" class="link-contatos">
+                <img src="img/whatsapp-removebg-preview.png" id="iconWpp" class="icon-footer">
+            </a>
+
+            <a href="https://www.instagram.com/lash_isis" class="link-contatos">
+                <img src="img/instagram-removebg-preview.png" id="iconWpp" class="icon-footer">
+            </a>
+        </footer>
     </main>
-
-    <footer class="footer-principal">
-        <div class="divisor-footer">
-            <h1 class="titulo-footer">Contatos</h1>
-
-            <a href="https://wa.me/5519981377802">
-                <img src="img/whatsapp-removebg-preview.png" class="icon-footer">
-            </a>
-
-            <a href="https://www.instagram.com/lash_isis">
-                <img src="img/instagram-removebg-preview.png" class="icon-footer">
-            </a>
-        </div>
-    </footer>
 
     <div class="container-formulario" id="containerCadastro">
         <div class="formulario-agendamento">
-            <img src="img/x.png" class="icon-fechar" onclick="location.reload()">
+            <img src="img/x-light.png" id="iconX" class="icon-fechar" onclick="fecharFormulario()">
             <!--Etapa 1-->
             <form class="etapa-formulario-agendamento" id="step-1" name="etapas">
                 <header class="cabecalho-formulario">
@@ -66,10 +74,6 @@
                     <div class="divisor">
                         <label>Data nascimento</label>
                         <div class="linha-data-nascimento">
-                            <select id="diaDataNascimento" class="select-data-nascimento">
-                                <option value="escolha">Dia</option>
-                            </select>
-
                             <select id="mesDataNascimento" class="select-data-nascimento" onchange="gerarDias()">
                                 <option value="escolha">Mês</option>
                                 <option value="01">Jan</option>
@@ -84,6 +88,10 @@
                                 <option value="10">Out</option>
                                 <option value="11">Nov</option>
                                 <option value="12">Dez</option>
+                            </select>
+
+                            <select id="diaDataNascimento" class="select-data-nascimento">
+                                <option value="escolha">Dia</option>
                             </select>
 
                             <select id="anoDataNascimento" class="select-data-nascimento">

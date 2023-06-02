@@ -27,7 +27,15 @@ function buscarDadosDetalhamento(){
         $("#detalheLado").html(dados.detalhesLado);
         $("#detalheProcedimentoAdcional").html(dados.detalhesProcedimentoAdcional);
 
-        (dados.status == "Pendente") ? $('[name="btnAlterarStatus"]').hide().first().show() : $('[name="btnAlterarStatus"]').hide().last().show();
+        if(dados.status == "Pendente") $('#agendar').css('display', "flex");
+        if(dados.status == "Agendado"){
+            $('#vizualizarProcedimento').css('display', "flex");
+            $('#concluir').css('display', "flex");
+        }
+        if(dados.status == "Concluido"){
+            $('#vizualizarProcedimento').css('display', "flex");
+            $('#pendenciar').css('display', "flex");
+        }
     }).fail(function (err)  {
         tratarErro(err);
     });

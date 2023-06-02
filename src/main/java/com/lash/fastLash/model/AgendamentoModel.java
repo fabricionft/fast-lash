@@ -4,16 +4,14 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
-
+@Table(name = "agendamentos")
 @Getter
 @Setter
-@Table(name = "agendamentos")
-@Entity
+@Entity(name = "Agendamento")
 public class AgendamentoModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
 
     @Column(nullable = false)
@@ -61,4 +59,8 @@ public class AgendamentoModel {
 
     @Column(length = 200, nullable = false)
     private String detalhesProcedimentoAdcional;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "agendamento_id")
+    private ProcedimentoModel procedimento;
 }

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+ <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/messageBox.css">
     <link rel="stylesheet" href="css/variaveis.css">
-    <link rel="stylesheet" href="css/detalheAgendamentos.css">
     <link rel="stylesheet" href="css/formularios.css">
+    <link rel="stylesheet" href="css/detalhesProcedimento.css">
 
     <script
             src="https://code.jquery.com/jquery-3.6.1.min.js"
@@ -18,17 +18,17 @@
             crossorigin="anonymous" defer>
     </script>
     <script src="js/geral.js" defer></script>
+    <script src="js/admin.js" defer></script>
     <script src="js/formularios.js" defer></script>
-    <script src="js/validacoes.js" defer></script>
     <script src="js/agendas.js" defer></script>
-    <script src="js/detalhesAgendamento.js" defer></script>
-</head>
+    <script src="js/detalhesProcedimento.js" defer></script>
+ </head>
 
-<body>
+ <body>
     <header class="header-principal">
         <div class="conteudo-header">
-            <a href="agendamentos.html">
-                <img src="img/acima.png" class="icon-header">
+            <a href="detalhesAgendamento.html">
+                <img src="img/acima.png" width="30px">
             </a>
         </div>
 
@@ -36,125 +36,86 @@
     </header>
 
     <main class="container-conteudo-principal">
-        <div class="container-detalhe-agendamento">
-            <div class="margem-detalhe-agendamento">
-                <div class="dados-pessoais">
-                    <div class="conteudo">
-                        <p class="subtitulo-conteudo">Data</p>
-                        <p class="texto-conteudo" id="dataAgendamento">XXX</p>
+        <div class="container-detalhe-procedimento">
+            <div class="margem-detalhe-procedimento">
+                <div class="dados-procedimento">
+                    <div class="divisor-dados-procedimento">
+                        <p class="subtitulo-dados-procidmento">Mapping</p>
+                        <p class="texto-dados-procidmento" id="mappingVizualizar">X</p>
+                    </div>
 
-                        <p class="subtitulo-conteudo">Nome</p>
-                        <p class="texto-conteudo" id="nome">XXX</p>
+                    <div class="divisor-dados-procedimento">
+                        <p class="subtitulo-dados-procidmento">Estilo</p>
+                        <p class="texto-dados-procidmento" id="estiloVizualizar">X</p>
+                    </div>
 
-                        <p class="subtitulo-conteudo">Data nascimento</p>
-                        <p class="texto-conteudo" id="dataNascimento">XXX</p>
+                    <div class="divisor-dados-procedimento">
+                        <p class="subtitulo-dados-procidmento">Modelo dos fios</p>
+                        <p class="texto-dados-procidmento" id="modeloFiosVizualizar">X</p>
+                    </div>
 
-                        <p class="subtitulo-conteudo">Profissão</p>
-                        <p class="texto-conteudo" id="profissao">XXX</p>
+                    <div class="divisor-dados-procedimento">
+                        <p class="subtitulo-dados-procidmento">Espessura</p>
+                        <p class="texto-dados-procidmento" id="espessuraVizualizar">X</p>
+                    </div>
 
-                        <p class="subtitulo-conteudo">Celular</p>
-                        <p class="texto-conteudo" id="celular">XXx</p>
+                    <div class="divisor-dados-procedimento">
+                        <p class="subtitulo-dados-procidmento">Curvatura</p>
+                        <p class="texto-dados-procidmento" id="curvaturaVizualizar">X</p>
+                    </div>
 
-                        <p class="subtitulo-conteudo">Email</p>
-                        <p class="texto-conteudo" id="email">XXX</p>
+                    <div class="divisor-dados-procedimento">
+                        <p class="subtitulo-dados-procidmento">Adesivo/cola</p>
+                        <p class="texto-dados-procidmento" id="adesivoOuColaVizualizar">X</p>
+                    </div>
 
-                        <p class="subtitulo-conteudo">CPF</p>
-                        <p class="texto-conteudo" id="cpf">XXX</p>
+                    <div class="divisor-dados-procedimento">
+                        <p class="subtitulo-dados-procidmento">Dia</p>
+                        <p class="texto-dados-procidmento" id="diaVizualizar">X</p>
+                    </div>
 
-                        <p class="subtitulo-conteudo">RG</p>
-                        <p class="texto-conteudo" id="rg">XXX</p>
+                    <div class="divisor-dados-procedimento">
+                        <p class="subtitulo-dados-procidmento">Horário</p>
+                        <p class="texto-dados-procidmento" id="horarioVizualizar">X</p>
+                    </div>
 
-                        <p class="subtitulo-conteudo">Endereço</p>
-                        <p class="texto-conteudo" id="endereco">XXX</p>
+                    <div class="divisor-dados-procedimento">
+                        <p class="subtitulo-dados-procidmento">Valor</p>
+                        <p class="texto-dados-procidmento" id="valorVizualizar">X</p>
                     </div>
                 </div>
 
-                <div class="dados-avaliativos">
-                    <div class="conteudo">
-                        <div class="linha-pergunta">
-                            <div class="pergunta">
-                                <p>Está de rímel?</p>
-                            </div>
+                <div class="imgs-procedimento">
+                    <div class="divisor-img-detalhe">
+                        <label class="label-olho">Olho esquerdo</label>
 
-                            <div class="resposta"><span class="resposta-selecionada" name="respostaSelecionada"></span></div>
-                        </div>
+                        <p class="p-cilios-1" id="olhoE-vizualizar-fio-1">X</p>
+                        <p class="p-cilios-2" id="olhoE-vizualizar-fio-2">X</p>
+                        <p class="p-cilios-3" id="olhoE-vizualizar-fio-3">X</p>
+                        <p class="p-cilios-4" id="olhoE-vizualizar-fio-4">X</p>
+                        <p class="p-cilios-5" id="olhoE-vizualizar-fio-5">X</p>
+                        <p class="p-cilios-6" id="olhoE-vizualizar-fio-6">X</p>
 
-                        <div class="linha-pergunta">
-                            <div class="pergunta">
-                                <p>É gestante?</p>
-                            </div>
+                        <img class="ia" src="img/cilios.png" width="100%">
+                    </div>
 
-                            <div class="resposta"><span class="resposta-selecionada" name="respostaSelecionada"></span></div>
-                        </div>
+                    <div class="divisor-img-detalhe">
+                        <label class="label-olho">Olho direito</label>
 
-                        <div class="linha-pergunta">
-                            <div class="pergunta">
-                                <p>Fez algum procedimento recentemente nos olhos?</p>
-                            </div>
+                        <p class="p-cilios-1" id="olhoD-vizualizar-fio-1">X</p>
+                        <p class="p-cilios-2" id="olhoD-vizualizar-fio-2">X</p>
+                        <p class="p-cilios-3" id="olhoD-vizualizar-fio-3">X</p>
+                        <p class="p-cilios-4" id="olhoD-vizualizar-fio-4">X</p>
+                        <p class="p-cilios-5" id="olhoD-vizualizar-fio-5">X</p>
+                        <p class="p-cilios-6" id="olhoD-vizualizar-fio-6">X</p>
 
-                            <div class="resposta"><span class="resposta-selecionada" name="respostaSelecionada"></span></div>
-                        </div>
-
-
-                        <div class="linha-pergunta">
-                            <div class="pergunta">
-                                <p>Possui alergia à esmaltes/cométicos/cianoacrilato?</p>
-                            </div>
-
-                            <div class="resposta"><span class="resposta-selecionada" name="respostaSelecionada"></span></div>
-                        </div>
-
-                        <div class="linha-pergunta">
-                            <div class="pergunta">
-                                <p>Possui problemas na tireóide?</p>
-                            </div>
-
-                            <div class="resposta"><span class="resposta-selecionada" name="respostaSelecionada"></span></div>
-                        </div>
-
-                        <div class="linha-pergunta">
-                            <div class="pergunta">
-                                <p>Possui glaucoma/blefarite/algum problema ocular?</p>
-                            </div>
-
-                            <div class="resposta"><span class="resposta-selecionada" name="respostaSelecionada"></span></div>
-                        </div>
-
-                        <div class="linha-pergunta">
-                            <div class="pergunta">
-                                <p>Está em tratamento oncológico?</p>
-                            </div>
-
-                            <div class="resposta"><span class="resposta-selecionada" name="respostaSelecionada"></span></div>
-                        </div>
-
-                        <div class="linha-pergunta">
-                            <div class="pergunta">
-                                <p>Dorme de lado?</p>
-                            </div>
-
-                            <div class="resposta"><span class="resposta-selecionada" name="respostaSelecionada"></span></div>
-                        </div>
-
-                        <p class="subtitulo-conteudo-1">Detalhes alergia</p>
-                        <p class="texto-conteudo" id="detalheAlergia">não possui</p>
-
-                        <p class="subtitulo-conteudo">Detalhes problema ocular</p>
-                        <p class="texto-conteudo" id="detalheProblemaOcular">não possui</p>
-
-                        <p class="subtitulo-conteudo">Lado de dormir</p>
-                        <p class="texto-conteudo" id="detalheLado">esquerdo</p>
-
-                        <p class="subtitulo-conteudo">Procedimento adcional</p>
-                        <p class="texto-conteudo" id="detalheProcedimentoAdcional">não será necessário</p>
+                        <img class="ia" src="img/cilios.png" width="100%">
                     </div>
                 </div>
 
-                <div class="botoes-detalhes-agendamento">
-                    <button class="btn-detalhes-agendamento" id="agendar" onclick="abrirFormulario()">Agendar horario</button>
-                    <button class="btn-detalhes-agendamento" id="vizualizarProcedimento" onclick="location.href='detalhesProcedimento.html'">Ver procedimento</button>
-                    <button class="btn-detalhes-agendamento" id="concluir" onclick="alterarStatus(1)">Marcar como concluído</button>
-                    <button class="btn-detalhes-agendamento" id="pendenciar" onclick="alterarStatus(2)">Marcar como pendente</button>
+                <div class="btns-procedimentos">
+                    <button class="btn-alterar-procedimento" name="btn-procedimento" onclick="alterarDados()">Alterar dados</button>
+                    <button class="btn-desmarcar-procedimento" name="btn-procedimento" onclick="removerDaAgenda()">Desmarcar data</button>
                 </div>
             </div>
         </div>
@@ -249,11 +210,11 @@
 
                 <footer class="botoes-formulario">
                     <button type="button" class="btn-anterior" onclick="anterior()">Voltar</button>
-                    <button type="button" class="btn-proximo" onclick="proximo()">Próximo</button>
+                    <button type="button" class="btn-proximo" onclick="alterarAgenda()">Alterar</button>
                 </footer>
             </div>
 
-            <!--Etapa 3-->
+            <!--Etapa 3
             <div class="etapa-formulario-agendamento" id="step-3" name="etapas">
                 <header class="cabecalho-formulario">
                     <p class="texto-header-formulario">Dados do procedimento</p>
@@ -277,7 +238,7 @@
                     <button type="button" class="btn-anterior" onclick="anterior()">Voltar</button>
                     <button type="button" class="btn-concluir-cadastro" onclick="agendarHorario()">Agendar</button>
                 </footer>
-            </div>
+            </div>-->
         </form>
     </div>
 
@@ -290,5 +251,5 @@
             </footer>
         </div>
     </div>
-</body>
+  </body>
 </html>

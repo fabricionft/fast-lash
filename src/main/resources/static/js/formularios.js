@@ -3,10 +3,32 @@ $(document).ready(function(){
     gerarAnos();
 });
 
+function abrirFormulario(){
+    $('[name="etapas"]').hide().first().show();
+    $('#containerCadastro').addClass('ativo');
+    travarTela();
+
+    $('[name="tamanhoFio"]').remove();
+    for(var i = 7; i <= 15;i++){
+        $('[name="selectTamanhoFio"]').append(
+            '<option value="'+i+'" name="tamanhoFio">'+i+'</option>'
+        )
+    }
+}
+
+function fecharFormulario(){
+    indice=0;
+    let formularios = document.getElementsByTagName('form');
+    for(var i = 0; i < formularios.length; i++){
+        formularios[i].reset();
+    }
+    $('#containerCadastro').removeClass('ativo');
+    destravarTela();
+}
+
 function esconder(){
     $('[name="etapas"]').hide();
 }
-
 
 var indice = 0;
 function proximo(){
@@ -24,10 +46,10 @@ function anterior(){
 
 function validarEtapas(){
     switch(indice){
-        case 0: 
-            if(validarEtapa1()) proximo(); 
+        case 0:
+            if(validarEtapa1()) proximo();
             break;
-        case 1: 
+        case 1:
             if(validarEtapa2()) proximo();
             break;
         case 2:
@@ -42,11 +64,6 @@ function exibirInputsDeDetalhamento(){
     ($('[name="possuiAlergia"]:checked').val() == "sim") ? $('#detalheAlergia').show() : $('#detalheAlergia').hide();
     ($('[name="possuiProblemaOcular"]:checked').val() == "sim") ? $('#detalheProblemaOcular').show() : $('#detalheProblemaOcular').hide();
     ($('[name="dormeDeLado"]:checked').val() == "sim") ? $('#detalheLado').show() : $('#detalheLado').hide();
-}
-
-function abrirFormulario(){
-    $('#containerCadastro').addClass('ativo');
-    travarTela();
 }
 
 function gerarAnos(){
@@ -127,11 +144,9 @@ function agendar(){
             email: $('#email').val().trim(),
             rg: $('#rg').val(),
             cpf: $('#cpf').val(),
-            //Ddaos de endereço
             endereco: endereco,
             //Dados avaliativos
             respostas: listaDeRespostas,
-            //Detlhe dos dados avaliativos
             detalhesAlergia: detalheAlergia,
             detalhesProblemaOcular: detalheProblemaOcular,
             detalhesLado: detalheLado,

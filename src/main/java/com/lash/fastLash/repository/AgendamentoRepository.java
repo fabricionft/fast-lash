@@ -11,9 +11,8 @@ import java.util.Optional;
 @Repository
 public interface AgendamentoRepository extends JpaRepository<AgendamentoModel, Long> {
 
-    @Query(value = "select * from agendamentos where codigo = ?", nativeQuery = true)
-    Optional<AgendamentoModel> buscarAgendamentoPorID(Long codigo);
+    Optional<AgendamentoModel> findByCodigo(Long codigo);
 
-    @Query(value = "select * from agendamentos where nome like %?%", nativeQuery = true)
+    @Query(value = "select a from Agendamento a where a.nome like %:nome%")
     List<AgendamentoModel> buscarAgendamentoPorNome(String nome);
 }

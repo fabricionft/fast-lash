@@ -20,12 +20,13 @@ function gerarMessageBox(cor, mensagem, textoBtn){
 }
 
 function fecharMessageBox(){
-    destravarTela();
     $('#esconder').removeClass('ativo')
     $('#mensagem'). css("transform", "translateY(-250px)");
 
+    if($('#btnMessage').html() == "Voltar aos agendamentos") location.href="agendamentos.html";
     if($('#btnMessage').html() == "Prosseguir") location.reload();
     if($('#btnMessage').html() == "Entendido") finalizarsessao();
+    if($('#btnMessage').html() != "Tentar novamente") destravarTela();
 }
 
 function tratarErro(err){

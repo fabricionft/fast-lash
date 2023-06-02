@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class AdminService {
 
@@ -28,7 +26,7 @@ public class AdminService {
 
 
     public AdminModel salvarAdmin(AdminModel admin){
-        if(adminRepository.buscarAdminPorUsuario(admin.getUsuario()).isPresent())
+        if(adminRepository.findByUsuario(admin.getUsuario()).isPresent())
             throw new RequestException("Desculpe, este usuário já sendo utilizado, por favor digite outro!");
 
         admin.setRole("ROLE_USER");
@@ -38,7 +36,7 @@ public class AdminService {
 
     public LoginResponseDTO fazerLogin(String usuario, String senha){
         if(validarSenha(usuario, senha)){
-            AdminModel admin = verificarSeAdminExistePorUsuario(usuario);
+            AdminModel admin = buscarUsuarioPorUsername(usuario);
             return  new LoginResponseDTO(
                 tokenService.gerarToken(admin),
                 admin.getRole()
@@ -48,7 +46,7 @@ public class AdminService {
 
     public AdminModel alterarRoleAdmin(Long codigo, String senha){
         if(passwordEncoder.matches(senha, senhaSistema)){
-            AdminModel admin = verificarSeAdminExistePorCodigo(codigo);
+            AdminModel admin = buscarUsuarioPorCodigo(codigo);
             admin.setRole("ROLE_ADMIN");
             return  adminRepository.save(admin);
         }else throw new RequestException("Senha do sistema incorreta!");
@@ -56,19 +54,17 @@ public class AdminService {
 
 
     //Validações
-    public boolean validarSenha(String usuario, String senha){
-        return (passwordEncoder.matches(senha, verificarSeAdminExistePorUsuario(usuario).getSenha()));
+    private boolean validarSenha(String usuario, String senha){
+        return (passwordEncoder.matches(senha, buscarUsuarioPorUsername(usuario).getSenha()));
     }
 
-    public AdminModel verificarSeAdminExistePorCodigo(Long codigo){
-        Optional<AdminModel> admin = adminRepository.buscarAdminPorID(codigo);
-        if(admin.isEmpty()) throw new RequestException("usuário inexistente!");
-        else return  admin.get();
+    private AdminModel buscarUsuarioPorCodigo(Long codigo){
+        return adminRepository.findByCodigo(codigo)
+               .orElseThrow(() -> new RequestException("Usuário inexistente!"));
     }
 
-    public AdminModel verificarSeAdminExistePorUsuario(String usuario){
-        Optional<AdminModel> admin = adminRepository.buscarAdminPorUsuario(usuario);
-        if(admin.isEmpty()) throw new RequestException("usuário inexistente!");
-        else return  admin.get();
+    private AdminModel buscarUsuarioPorUsername(String usuario){
+        return adminRepository.findByUsuario(usuario)
+               .orElseThrow(() -> new RequestException("Usuário inexistente!"));
     }
 }

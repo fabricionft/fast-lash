@@ -5,7 +5,6 @@ import com.lash.fastLash.service.AgendamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,19 +15,25 @@ public class AgendamentoController {
     private AgendamentoService agendamentoService;
 
     @GetMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> listarAgendamentos() {
         return new ResponseEntity<>(agendamentoService.listarAgendamentos(), HttpStatus.OK);
     }
 
     @GetMapping(path = "/{codigo}")
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> buscarAgendamentoPorID(@PathVariable Long codigo) {
-        return new ResponseEntity<>(agendamentoService.buscarAgendamentoPorID(codigo), HttpStatus.OK);
+    //@PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> buscarAgendamentoPorCodigo(@PathVariable Long codigo) {
+        return new ResponseEntity<>(agendamentoService.buscarAgendamentoPorCodigo(codigo), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/procedimento/{codigo}")
+    //@PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> buscarProcedimentoPorCodigo(@PathVariable Long codigo) {
+        return new ResponseEntity<>(agendamentoService.buscarProcedimentoPorCodigo(codigo), HttpStatus.OK);
     }
 
     @GetMapping(path = "/nome/{nome}")
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> buscarAgendamentoPorNome(@PathVariable String nome) {
         return new ResponseEntity<>(agendamentoService.buscarAgendamentoPorNome(nome), HttpStatus.OK);
     }
@@ -39,14 +44,14 @@ public class AgendamentoController {
     }
 
     @PutMapping(path = "/alterarStatus/{codigo}/{acao}")
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> alterarStatusAgendamento(@PathVariable Long codigo,
                                                       @PathVariable Integer acao){
         return  new ResponseEntity<>(agendamentoService.alterarStatusAgendamento(codigo, acao), HttpStatus.OK);
     }
 
     @DeleteMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> excluirAgendamentos(){
         return new ResponseEntity<>(agendamentoService.excluirAgendamentos(), HttpStatus.OK);
     }

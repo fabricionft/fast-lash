@@ -17,7 +17,7 @@ import java.util.List;
 public class AdminModel implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
 
     @Column(length = 15, nullable = false)

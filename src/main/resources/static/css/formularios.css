@@ -2,7 +2,7 @@
     width: 100%;
     height: 100%;
     position: fixed;
-    background: rgba(0, 0, 0, 0.35);
+    background: var(--sobreposicao);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -12,13 +12,13 @@
 
 .container-formulario.ativo{
     z-index: 2;
-    opacity: 1;   
+    opacity: 1;
 }
 
 .formulario-agendamento{
     width: 700px;
     height: 600px;
-    background: #fff;
+    background: var(--formularios);
     border-radius: 8px;
     display: flex;
     flex-direction: column;
@@ -62,18 +62,18 @@
 .texto-header-formulario{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 20px;
-    color: rgb(48, 48, 48);
+    color: var(--titulos);
     font-weight: bold;
     margin: 0;
 }
 
 /*Content*/
-.divisor, .divisor-2{
-    width: 40%;
-    height: auto;
+.divisor, .divisor-2, .divisor-3{
+    width: 45%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    position: relative;
 }
 
 .linha-cep{
@@ -109,7 +109,7 @@
 .escolha-avaliacao-form{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 15px;
-    color: rgb(103, 103, 103);
+    color: var(--textos);
     margin: 0px 20px 0px 5px;
 }
 
@@ -123,11 +123,57 @@
     height: 90px;
 }
 
+/*Agendamento horário*/
+.label-olho{
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    color: rgb(150, 0, 225);
+    margin-bottom: -30px;
+}
+
+.select-cilios-1, .select-cilios-2, .select-cilios-3, .select-cilios-4, .select-cilios-5, .select-cilios-6{
+    width: auto;
+    position: absolute;
+    top: 25%;
+    left: 0%;
+    background: transparent;
+    padding: 0;
+    font-weight: bold;
+    outline: none;
+}
+
+.select-cilios-2{
+    top: 60%;
+    left: 12%;
+}
+
+.select-cilios-3{
+    top: 75%;
+    left: 32.5%;
+}
+
+.select-cilios-4{
+    position: absolute;
+    top: 75%;
+    left: 56%;
+}
+
+.select-cilios-5{
+    top: 60%;
+    left: 76%;
+}
+
+.select-cilios-6{
+    top: 25%;
+    left: 92%;
+}
+
 /*Footer*/
 .btn-proximo, .btn-anterior, .btn-concluir-cadastro{
     width: 130px;
     height: 45px;
-    
+
 }
 
 .btn-anterior{
@@ -205,24 +251,29 @@
 
     .conteudo-formulario{
         height: 82.5%;
-        align-items: center;
+        flex-direction: column;
+        justify-content: center;
     }
 
     .botoes-formulario{
         height: 10%;
     }
 
-
     /*Conteudo*/
-    .divisor, .divisor-2{
+    .divisor, .divisor-2, .divisor-3{
         width: 100%;
         justify-content: left;
+        margin-top: 10px;
     }
+
+    .divisor-2{margin-top: 20px;}
+    .divisor-3{margin-top: 40px;}
+
+    .divisor:nth-child(1), .divisor-2:nth-child(1), .divisor-2:nth-child(1){margin-top: 0;}
 
     .linha-escolha{
         width: 25%;
     }
-
 
     /*Footer*/
     .btn-proximo, .btn-anterior, .btn-concluir-cadastro{

@@ -13,7 +13,13 @@ function alterarFiltro(filtro){
 
 function listarAgendamentos(dados){
     while($('[name="linha"]').length) $('#linha').remove();
-    dados.slice().reverse().forEach(agendamento => criarLinha(agendamento));
+
+    let lista = [];
+    dados.forEach(agendamento =>{
+        if(agendamento.status == localStorage.getItem('filtro')) lista.push(agendamento);
+    });
+
+    lista.slice().reverse().forEach(agendamento => criarLinha(agendamento));
 }
 
 function buscarAgendamentos(){
@@ -24,11 +30,7 @@ function buscarAgendamentos(){
             xhr.setRequestHeader("Authorization", 'Bearer '+ localStorage.getItem('token'));
         }
     }).done(function (dados) {
-        let lista = [];
-        dados.forEach(agendamento =>{
-            if(agendamento.status == localStorage.getItem('filtro')) lista.push(agendamento);
-        });
-        listarAgendamentos(lista);
+        listarAgendamentos(dados);
     }).fail(function (err){
         tratarErro(err);
     });
@@ -43,7 +45,7 @@ function pesquisarAgendamentoPorNome(){
             xhr.setRequestHeader("Authorization", 'Bearer '+ localStorage.getItem('token'));
         }
     }).done(function (dados) {
-        listarAgendamentos(dados)
+        listarAgendamentos(dados);
     }).fail(function (err){
         tratarErro(err);
     });

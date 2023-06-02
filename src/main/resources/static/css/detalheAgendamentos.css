@@ -68,13 +68,17 @@
 .botoes-detalhes-agendamento{
     width: 100%;
     display: flex;
-    justify-content: right;
+    justify-content: left;
     margin-top: 10px;
 }
 
-.btn-concluir-agendamento{
+.btn-detalhes-agendamento{
     width: 200px;
     height: 45px;
+    margin-right: 25px;
+    display: none;
+    align-items: center;
+    justify-content: center;
 }
 
 @media screen and (max-width: 800px){
@@ -89,5 +93,10 @@
 
     .linha-pergunta:nth-child(1){margin-top: 15px;}
 
-    .btn-concluir-agendamento{width: 100%;}
+    .botoes-detalhes-agendamento{
+        flex-direction: column;
+    }
+
+    .btn-detalhes-agendamento{width: 100%;}
+    .btn-detalhes-agendamento:nth-child(2){margin-bottom: 20px;};
 }
