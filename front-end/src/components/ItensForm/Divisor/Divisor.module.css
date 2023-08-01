@@ -1,0 +1,19 @@
+.divisor{
+  width: 47.5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  margin-top: 20px;
+}
+
+.divisor:nth-child(1), .divisor:nth-child(2){margin-top: 0;}
+
+@media screen and (max-width: 700px){
+  .divisor{
+    width: 100%;
+    justify-content: left;
+  } 
+
+  .divisor:nth-child(2){margin-top: 20px;}
+}

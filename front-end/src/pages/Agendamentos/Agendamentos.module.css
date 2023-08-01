@@ -1,0 +1,124 @@
+.containerAgendamentos{
+  width: 100%;
+  margin: 40px 0;
+}
+
+.painelAgendamentos{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--formularios);
+  box-shadow: 0 2px 4px rgb(0 0 0 / 15%), 0 8px 16px rgb(0 0 0 / 15%);
+  border-radius: 7.5px;
+}
+
+.margemPainel{
+  width: 95%;
+  margin: 30px 0;
+}
+
+.botoesPainel, .conteudoPainel{
+  width: 100%;
+}
+
+.botoesPainel{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+/*Botoes*/
+.selectAgendamentos{
+  width: 150px;
+  height: 45px;
+}
+
+.linhaPesquisa{
+  width: 300px;
+  height: 45px;
+  position: relative;
+}
+
+.inputPesquisar{
+  width: calc(100% - 15px);
+}
+
+.aviso{
+  width: 100%;
+  height: calc(90vh - 150px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*conteúdo*/
+.conteudoPainel{
+  height: auto;
+}
+
+.linha{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 50px;
+}
+.colunaP1, .colunaP2, .colunaP3, .colunaP4, .colunaP5,
+.coluna1, .coluna2, .coluna3, .coluna4, .coluna5{
+  background: var(--elementos);
+  color: var(--textos);
+  display: flex;
+  padding: 10px 0;
+}
+
+.colunaP1, .colunaP2, .colunaP3, .colunaP4, .colunaP5{
+  padding: 15px 0;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.coluna1, .coluna2, .coluna3, .coluna4, .coluna5{
+  background: transparent;
+}
+
+.colunaP1, .coluna1{width: 30%;}
+.colunaP2, .coluna2{width: 8%;}
+.colunaP3, .coluna3{width: 20%;}
+.colunaP4, .coluna4{width:20%;}
+.colunaP5, .coluna5{width:20%; justify-content: center;}
+
+.textoAgendametos, .subtituloAgendametos{
+  margin: 0 0 0 10px;
+  color: var(--textos);
+}
+
+.subtituloAgendametos{color: #fff; font-weight: bold;}
+
+
+@media screen and (max-width: 600px) {
+  .margemPainel{
+      width: 90%;
+  }
+
+  /*Botoes*/
+  .selectAgendamentos{width: 33%;}
+  .linhaPesquisa{width: 57.5%;}
+
+  /*Conteúdo*/
+  .linha{margin-top: 30px;}
+  .linha:nth-child(1){display: none;}
+  .linha:nth-child(2){margin-top: 0;}
+
+  .coluna1, .coluna2, .coluna3, .coluna4, .coluna5{padding: 0;}
+
+  .coluna1{width: 37%; margin-bottom: 5px;}
+  .coluna2{width: 22%;  margin-top: -10px;}
+  .coluna3{width: 35%;  margin-top: -10px;}
+  .coluna4{width:39%; justify-content: left;}
+  .coluna5{width:59%; justify-content: left;}
+
+  .textoAgendamentos{margin-left: 0;}
+}

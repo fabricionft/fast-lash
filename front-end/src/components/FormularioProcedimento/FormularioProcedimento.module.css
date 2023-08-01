@@ -1,0 +1,60 @@
+/*Agendamento horário*/
+.labelOlho{
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  color: var(--elementos);
+  margin-bottom: -30px;
+}
+
+.imgCilios{width: 100%;}
+
+.ativo{
+  filter: brightness(100%);
+}
+
+.desativo{
+  filter: brightness(15%);
+}
+
+.selectCilios{
+  width: auto;
+  position: absolute;
+  background: transparent;
+  padding: 0;
+  font-weight: bold;
+  outline: none;
+  z-index: 1;
+}
+
+.a{
+  top: 25%;
+  left: 0%;
+}
+
+.b{
+  top: 60%;
+  left: 12%;
+}
+
+.c{
+  top: 75%;
+  left: 32.5%;
+}
+
+.d{
+  position: absolute;
+  top: 75%;
+  left: 56%;
+}
+
+.e{
+  top: 60%;
+  left: 76%;
+}
+
+.f{
+  top: 25%;
+  left: 92%;
+}

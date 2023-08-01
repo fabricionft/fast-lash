@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista agendamentos</title>
+
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/messageBox.css">
+    <link rel="stylesheet" href="css/variaveis.css">
+    <link rel="stylesheet" href="css/formularios.css">
+    <link rel="stylesheet" href="css/detalhesProcedimento.css">
+
+    <script
+            src="https://code.jquery.com/jquery-3.6.1.min.js"
+            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+            crossorigin="anonymous" defer>
+    </script>
+    <script src="js/geral.js" defer></script>
+    <script src="js/admin.js" defer></script>
+    <script src="js/formularios.js" defer></script>
+    <script src="js/agendas.js" defer></script>
+    <script src="js/detalhesProcedimento.js" defer></script>
+ </head>
+
+ <body>
+    <header class="header-principal">
+        <div class="conteudo-header">
+            <a href="detalhesAgendamento.html">
+                <img src="img/acima.png" width="30px">
+            </a>
+        </div>
+
+        <div class="margem-header"></div>
+    </header>
+
+    <main class="container-conteudo-principal">
+        <div class="container-detalhe-procedimento">
+            <div class="margem-detalhe-procedimento">
+                <div class="dados-procedimento">
+                    <div class="divisor-dados-procedimento">
+                        <p class="subtitulo-dados-procidmento">Mapping</p>
+                        <p class="texto-dados-procidmento" id="mappingVizualizar">X</p>
+                    </div>
+
+                    <div class="divisor-dados-procedimento">
+                        <p class="subtitulo-dados-procidmento">Estilo</p>
+                        <p class="texto-dados-procidmento" id="estiloVizualizar">X</p>
+                    </div>
+
+                    <div class="divisor-dados-procedimento">
+                        <p class="subtitulo-dados-procidmento">Modelo dos fios</p>
+                        <p class="texto-dados-procidmento" id="modeloFiosVizualizar">X</p>
+                    </div>
+
+                    <div class="divisor-dados-procedimento">
+                        <p class="subtitulo-dados-procidmento">Espessura</p>
+                        <p class="texto-dados-procidmento" id="espessuraVizualizar">X</p>
+                    </div>
+
+                    <div class="divisor-dados-procedimento">
+                        <p class="subtitulo-dados-procidmento">Curvatura</p>
+                        <p class="texto-dados-procidmento" id="curvaturaVizualizar">X</p>
+                    </div>
+
+                    <div class="divisor-dados-procedimento">
+                        <p class="subtitulo-dados-procidmento">Dia</p>
+                        <p class="texto-dados-procidmento" id="diaVizualizar">X</p>
+                    </div>
+
+                    <div class="divisor-dados-procedimento">
+                        <p class="subtitulo-dados-procidmento">Horário</p>
+                        <p class="texto-dados-procidmento" id="horarioVizualizar">X</p>
+                    </div>
+
+                    <div class="divisor-dados-procedimento">
+                        <p class="subtitulo-dados-procidmento">Valor</p>
+                        <p class="texto-dados-procidmento" id="valorVizualizar">X</p>
+                    </div>
+                </div>
+
+                <div class="imgs-procedimento">
+                    <div class="divisor-img-detalhe">
+                        <label class="label-olho">Olho esquerdo</label>
+
+                        <p class="p-cilios-1" id="olhoE-vizualizar-fio-1">X</p>
+                        <p class="p-cilios-2" id="olhoE-vizualizar-fio-2">X</p>
+                        <p class="p-cilios-3" id="olhoE-vizualizar-fio-3">X</p>
+                        <p class="p-cilios-4" id="olhoE-vizualizar-fio-4">X</p>
+                        <p class="p-cilios-5" id="olhoE-vizualizar-fio-5">X</p>
+                        <p class="p-cilios-6" id="olhoE-vizualizar-fio-6">X</p>
+
+                        <img class="ia" src="img/cilios.png" width="100%">
+                    </div>
+
+                    <div class="divisor-img-detalhe">
+                        <label class="label-olho">Olho direito</label>
+
+                        <p class="p-cilios-1" id="olhoD-vizualizar-fio-1">X</p>
+                        <p class="p-cilios-2" id="olhoD-vizualizar-fio-2">X</p>
+                        <p class="p-cilios-3" id="olhoD-vizualizar-fio-3">X</p>
+                        <p class="p-cilios-4" id="olhoD-vizualizar-fio-4">X</p>
+                        <p class="p-cilios-5" id="olhoD-vizualizar-fio-5">X</p>
+                        <p class="p-cilios-6" id="olhoD-vizualizar-fio-6">X</p>
+
+                        <img class="ia" src="img/cilios.png" width="100%">
+                    </div>
+                </div>
+
+                <div class="btns-procedimentos">
+                    <button class="btn-alterar-procedimento" name="btn-procedimento" onclick="abrirFormularioEditarProcedimento()">Alterar dados</button>
+                    <button class="btn-alterar-procedimento" name="btn-procedimento" onclick="abrirFormulario('alterarData')">Alterar data</button>
+                    <button class="btn-desmarcar-procedimento" name="btn-procedimento" onclick="removerDaAgenda()">Desmarcar data</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!--Formulario agendar horario-->
+    <div class="container-formulario" id="containerCadastro">
+        <!--Form editar procedimento--><
+        <form class="formulario-agenda" name="form" id="alterarProcedimento">
+            <img src="img/x-light.png" class="icon-fechar" onclick="fecharFormulario()">
+            <!--Etapa 1-->
+            <div class="etapa-formulario-agendamento" id="step-1" name="etapas">
+                <header class="cabecalho-formulario">
+                    <p class="texto-header-formulario">Dados do procedimento</p>
+                </header>
+
+                <div class="conteudo-formulario">
+                    <div class="divisor-2">
+                        <label>Mapping</label>
+                        <input type="text"
+                               name="inputFormulario-1" id="mapping" placeholder="Digite o mapping" maxlength="50">
+                    </div>
+
+                    <div class="divisor-2">
+                        <label>Estilo</label>
+                        <input type="text"
+                               name="inputFormulario-1" id="estilo" placeholder="Digite o estilo" maxlength="11">
+                    </div>
+
+                    <div class="divisor-2">
+                        <label>Modelos dos fios</label>
+                        <input type="text"
+                               name="inputFormulario-1"id="modeloFios" placeholder="Digite o modelo dos fios" maxlength="100">
+                    </div>
+
+                    <div class="divisor-2">
+                        <label>Espessura</label>
+                        <input type="number"
+                               name="inputFormulario-1" id="espessura" placeholder="Digite a espessura" maxlength="9" >
+                    </div>
+
+                    <div class="divisor-2">
+                        <label>Curvatura</label>
+                        <input type="number"
+                               name="inputFormulario-1" id="curvatura" placeholder="Digite a curvatura" maxlength="11" name="abc">
+                    </div>
+                </div>
+
+                <footer class="botoes-formulario">
+                    <button type="button" class="btn-proximo" onclick="proximo()">Próximo</button>
+                </footer>
+            </div>
+
+            <!--Etapa 2-->
+            <div class="etapa-formulario-agendamento" id="step-2" name="etapas">
+                <header class="cabecalho-formulario">
+                    <p class="texto-header-formulario">Dados do procedimento</p>
+                </header>
+
+                <div class="conteudo-formulario">
+                    <div class="divisor-3">
+                        <label class="label-olho">Olho esquerdo</label>
+
+                        <select class="select-cilios-1" id="olhoE-fio-1" name="selectTamanhoFio"></select>
+                        <select class="select-cilios-2" id="olhoE-fio-2" name="selectTamanhoFio"></select>
+                        <select class="select-cilios-3" id="olhoE-fio-3" name="selectTamanhoFio"></select>
+                        <select class="select-cilios-4" id="olhoE-fio-4" name="selectTamanhoFio"></select>
+                        <select class="select-cilios-5" id="olhoE-fio-5" name="selectTamanhoFio"></select>
+                        <select class="select-cilios-6" id="olhoE-fio-6" name="selectTamanhoFio"></select>
+
+                        <img class="ia" src="img/cilios.png" width="100%">
+                    </div>
+
+                    <div class="divisor-3">
+                        <label class="label-olho">Olho direito</label>
+
+                        <select class="select-cilios-1" id="olhoD-fio-1" name="selectTamanhoFio"></select>
+                        <select class="select-cilios-2" id="olhoD-fio-2" name="selectTamanhoFio"></select>
+                        <select class="select-cilios-3" id="olhoD-fio-3" name="selectTamanhoFio"></select>
+                        <select class="select-cilios-4" id="olhoD-fio-4" name="selectTamanhoFio"></select>
+                        <select class="select-cilios-5" id="olhoD-fio-5" name="selectTamanhoFio"></select>
+                        <select class="select-cilios-6" id="olhoD-fio-6" name="selectTamanhoFio"></select>
+
+                        <img class="ia" src="img/cilios.png" width="100%">
+                    </div>
+                </div>
+
+                <footer class="botoes-formulario">
+                    <button type="button" class="btn-anterior" onclick="anterior()">Voltar</button>
+                    <button type="button" class="btn-proximo" onclick="alterarProcedimento()">Alterar</button>
+                </footer>
+            </div>
+        </form>
+
+        <!--Formulario agendar horario-->
+        <form class="formulario-alterar-data" name="form" id="alterarData">
+            <img src="img/x-light.png" class="icon-fechar" onclick="fecharFormulario()">
+            <!--Etapa 3-->
+            <div class="etapa-formulario-alterar-data" id="step-1">
+                <header class="cabecalho-formulario">
+                    <p class="texto-header-formulario">Alterar data</p>
+                </header>
+
+                <div class="conteudo-formulario">
+                    <div class="divisor-2">
+                        <label>Data</label>
+                        <input type="date" id="data" onchange="gerarHorarios(this.value)">
+                    </div>
+
+                    <div class="divisor-2">
+                        <label>Horário</label>
+                        <select id="horarios">
+                            <option value="escolha">Escolha o horário</option>
+                        </select>
+                    </div>
+                </div>
+
+                <footer class="botoes-formulario">
+                    <button type="button" class="btn-concluir-cadastro" onclick="alterarData()">Alterar</button>
+                </footer>
+            </div>
+        </form>
+    </div>
+
+    <!--Message Box-->
+    <div class="esconderMessageBox" id="esconder">
+        <div class="message-box" id="mensagem">
+            <div class="texto-message-box" id="textoMensagem"></div>
+            <footer class="footer-message-box" id="btnMensagem">
+                <button class="btn-message-box" id="btnMessage" onclick="fecharMessageBox()">Ok</button>
+            </footer>
+        </div>
+    </div>
+  </body>
+</html>

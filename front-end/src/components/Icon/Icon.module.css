@@ -1,0 +1,17 @@
+.icon{
+  cursor: pointer;
+}
+
+.iconLogin{
+  position: absolute;
+  top: 25%;
+  right: 0;
+}
+
+.ativo{
+  filter: brightness(100%);
+}
+
+.desativo{
+  filter: brightness(30%);
+}

@@ -1,0 +1,61 @@
+.containerFuncionalidades{
+  width: 100%;
+  height: calc(90vh - 20px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.funcionalidade{
+  width: 300px;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--formularios);
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+  border-radius: 10px;
+  border: 1px solid var(--formularios);
+  cursor: pointer;
+  margin: 20px;
+}
+
+.funcionalidade:hover{
+  border: 1px solid var(--elementos);
+}
+
+.margemFuncionalidade{
+  width: 80%;
+  height: 85%;
+}
+
+.imgFuncionalidade, .descricaoFuncionalidade, .tituloFuncionalidade{
+  width: 100%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tituloFuncionalidade{height: 15%;}
+.descricaoFuncionalidade{height: 35%;}
+
+.textoTituloFuncionalidade{
+  font-weight: bold;
+  color: var(--titulos);
+  font-size: 17.5px;
+}
+
+
+@media screen and (max-width: 550px){
+  .containerFuncionalidades{
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 80vh;
+  }
+
+  .funcionalidade{
+    width: 100%;
+    margin: 0;
+  }
+}

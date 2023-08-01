@@ -1,0 +1,142 @@
+.containerDetalhesProcedimento{
+  width: 100%;
+  margin: 40px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+  background: var(--formularios);
+  border-radius: 10px;
+}
+
+.margemDetalheProcedimento{
+  width: 92.5%;
+  margin: 40px 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.dadosProcedimento, .imgProcedimento, .btnsProcedimento{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.imgProcedimento{
+  margin-top: 50px;
+  justify-content: space-evenly;
+}
+
+.distanciar{margin: 50px 0;}
+
+/*Dados*/
+.divisorDadosProcedimento{
+  width: 15%;
+  margin-left: 4%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.subtituloDadosProcedimento{
+  color: var(--elementos);
+  font-weight: bold;
+}
+
+/*Imagem*/
+.divisorImgDetalhe{
+  width: 350px;
+  position: relative;
+}
+
+.labelOlho{
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  color: var(--elementos);
+  margin-bottom: -30px;
+}
+
+.cilios{
+  width: auto;
+  position: absolute;
+  background: transparent;
+  padding: 0;
+  font-weight: bold;
+  outline: none;
+}
+
+.imgCilios{width: 100%;}
+
+.ativo{
+  filter: brightness(100%);
+}
+
+.desativo{
+  filter: brightness(15%);
+}
+
+.a{
+  top: 33%;
+  left: 3%;
+}
+
+
+.b{
+  top: 60%;
+  left: 17%;
+}
+
+.c{
+  top: 75%;
+  left: 36%;
+}
+
+.d{
+  position: absolute;
+  top: 75%;
+  left: 58%;
+}
+
+.e{
+  top: 60%;
+  left: 78%;
+}
+
+.f{
+  top: 33%;
+  left: 92%;
+}
+
+/*Botoes*/
+.btnAlterarProcedimento, .btnDesmarcarProcedimento{
+  width: 150px;
+  height: 40px;
+  margin-right: 15px;
+}
+
+.btnDesmarcarProcedimento{background: rgb(255, 101, 101);}
+.btnDesmarcarProcedimento:hover{background: rgb(222, 78, 78);}
+
+
+@media screen and (max-width: 1000px){
+  .divisorDadosProcedimento{width: 28%;}
+}
+
+@media screen and (max-width: 850px){
+  .divisorImgDetalhe:nth-child(1){
+      margin-bottom: 40px;
+  }
+}
+
+@media screen and (max-width: 600px){
+  .divisorDadosProcedimento{
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .btnDesmarcarProcedimento{
+    width: 100%;
+    margin: 20px 0 0 0;
+  }
+}

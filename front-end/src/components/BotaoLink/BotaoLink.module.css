@@ -1,0 +1,64 @@
+.btnLink{
+  width: 140px;
+  height: 40px;
+  background: var(--elementos);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 7.5px;
+  font-weight: bold;
+  margin-right: 20px;
+  font-size: 15px;
+}
+
+.btnLink:hover{
+  background-color: var(--hover);
+}
+
+.agenda, .agenda:nth-child(2){
+  width: 47.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 7.5px;
+  margin: 10px 0 0 0;
+  color: #fff;
+  background: var(--elementos);
+  font-weight: bold;
+}
+
+.agenda:nth-child(1), .agenda:nth-child(2){margin-top: 0;}
+
+.agenda:hover{
+  background-color: var(--hover);
+}
+
+.agendamentos{
+  width: 75%;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 600px){
+  .btnLink{
+    width: 100%;
+    margin: 0;
+  }
+
+  .btnLink:nth-child(2){margin-top: 20px;}
+  .agenda:nth-child(2){margin-top: 0;}
+
+  .agenda{
+    width: 47.5%;
+    margin: 10px 0 0 0;
+  }
+}
+
+@media screen and (max-width: 250px){
+  .agenda, .agenda:nth-child(2){
+    width: 100%;
+    margin: 10px 0 0 0;
+  }
+}

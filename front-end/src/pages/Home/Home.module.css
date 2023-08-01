@@ -1,0 +1,158 @@
+
+.containerHome{
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sloganConteudoPrincipal{
+  display: flex;
+  justify-content: center;
+  font-size: 35px;
+  width: 320px;
+  line-height: 35px;
+  animation: escrever 1.5s steps(22), piscar .5s step-end infinite alternate;
+  white-space:nowrap;
+  overflow: hidden;
+}
+
+.textoConteudoPrincipal{
+  text-align: center;
+  color: transparent;
+  font-size: 18px;
+  margin: 10px 0 40px 0;
+  width: 320px;
+  animation: escrever 1.75s steps(22), piscar .5s step-end infinite alternate;
+  animation-delay: 1.5s;
+  white-space:nowrap;
+  overflow: hidden;
+  border-right: 1px solid;
+}
+
+.btnAgendar{
+  background: var(--elementos);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 320px;
+  height: 60px;
+  font-size: 20px;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 15%), 0 8px 16px rgb(0 0 0 / 15%);
+  animation: flutuar 2s infinite alternate ease-in-out;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 15%), 0 8px 16px rgb(0 0 0 / 15%);
+}
+
+.footerContatos{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background: transparent;
+}
+
+.linksContatos{
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--elementos);
+  cursor: pointer;
+  animation: mudarDeCor 2s infinite alternate ease-in-out;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 15%), 0 8px 16px rgb(0 0 0 / 15%);
+}
+
+.linksContatos:nth-child(1){margin-right: 15px;}
+
+.linksContatos::before, .linksContatos::after{
+  content: '';
+  position: absolute;
+  display: block;
+  border: 2px solid var(--elementos);
+  top: -10px;
+  bottom: -10px;
+  left: -10px;
+  right: -10px;
+  border-radius: 50%;
+  animation: pulsar 1.5s linear infinite;
+}
+
+.linkContatos:hover{
+  background: var(--hover);
+}
+
+@keyframes pulsar{
+  0%{
+      transform: scale(0.6);
+      opacity: 0;
+  }
+
+  50%{
+      opacity: 1;
+  }
+
+  100%{
+      transform: scale(1);
+      opacity: 0;
+  }
+  
+}
+
+@keyframes mudarDeCor{
+  from{
+      filter: brightness(100%);
+  }
+
+  to{
+      filter: brightness(135%);
+  }
+}
+
+@keyframes flutuar{
+  from{
+      transform: translate3d(0, 0, 0);
+      filter: brightness(100%);
+  }
+
+  to{
+      transform: translate3d(0, -15px, 0);
+      filter: brightness(135%);
+  }
+}
+
+@keyframes escrever{
+  from{
+      width: 0;
+  }
+}
+
+@keyframes piscar{
+  0%{color: var(--textos)}
+
+  50%{
+      border: transparent;
+  }
+}
+
+@media screen and (max-width: 600px){
+  .conteudoPrincipal{width: 85%;}
+
+  .sloganConteudo-principal, .textoConteudo-principal, .btnAgendar{
+      width: 100%;
+  }
+}
+
+@media screen and (max-width: 350px){
+  .sloganConteudoPrincipal, .textoConteudoPrincipal{
+      white-space: inherit;
+  }
+}

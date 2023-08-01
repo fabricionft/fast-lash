@@ -1,0 +1,106 @@
+body{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 15px;
+  margin: 0;
+  padding: 0;
+  background-color: var(--fundo);
+}
+
+p, a{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 15px;
+  color: var(--textos);
+  margin: 0;
+  text-decoration: none;
+}
+
+h1{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 25px;
+  font-weight: bold;
+  color: var(--titulos);
+  margin: 0;
+}
+
+button{
+  height: 40px;
+  border: none;
+  background: var(--elementos);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 15%), 0 8px 16px rgb(0 0 0 / 15%);
+}
+
+button:hover{
+  background: var(--hover);
+}
+
+label{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: var(--textos);
+  margin-bottom: 4px;
+}
+
+input, select, textarea{
+  width: calc(100% - 10px);
+  height: 45px;
+  padding-left: 10px;
+  border-radius: 8px;
+  border: none;
+  background: var(--inputs);
+  cursor: pointer;
+  color: var(--textos);
+  outline: none;
+}
+
+select{
+  width: 100%;
+}
+
+.icon-header{
+  width: 32.5px;
+  cursor: pointer;
+}
+
+/*Variáveis*/
+:root{
+  --fundo: rgba(140, 0, 195, 0.05);
+  --titulos: #170052;
+  --textos: rgb(106, 106, 106);
+  --elementos: rgb(170, 0, 255);
+  --hover: rgb(128, 0, 192);
+  --degrade: rgb(255, 176, 192);
+  --formularios: #fff;
+  --inputs: rgb(170, 0, 255, 0.05);
+  --sobreposicao: rgba(0, 0, 0, 0.35);
+}
+
+.temaClaro:root{
+  --fundo: rgba(140, 0, 195, 0.05);
+  --titulos: #3b393c;
+  --textos: rgb(106, 106, 106);
+  --elementos: rgb(170, 0, 255);
+  --hover: rgb(128, 0, 192);
+  --degrade: rgb(255, 176, 192);
+  --formularios: #fff;
+  --inputs: rgb(170, 0, 255, 0.05);
+  --sobreposicao: rgba(0, 0, 0, 0.35);
+}
+
+.temaEscuro:root{
+  --fundo: rgb(35, 35, 35);
+  --titulos: #ffffff;
+  --textos: rgb(255, 255, 255);
+  --elementos: rgb(190, 137, 255);
+  --hover: rgb(156, 97, 227);
+  --degrade: rgb(255, 176, 192);
+  --formularios: rgb(50, 50, 50);
+  --inputs: rgba(9, 9, 9, 0.2);
+  --sobreposicao: rgba(0, 0, 0, 0.35);
+}

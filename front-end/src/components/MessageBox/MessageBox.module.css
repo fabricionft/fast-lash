@@ -1,0 +1,45 @@
+.containerMessagebox{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 2;
+}
+
+.messageBox{
+  width: 300px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+.sucess{
+  background-color: rgb(233, 255, 244);
+}
+
+.error{
+  background-color: rgb(252, 216, 216);
+}
+
+.margemMessageBox{
+  width: 90%;
+  margin: 20px 0;
+}
+
+.textoMessgaeBox{
+  color: rgb(40, 39, 39);
+}
+
+.btnMessageBox{
+  width: 100%;
+  height: 40px;
+  margin-top: 25px;
+}
+
+@media screen and (max-width: 350px) {
+  .messageBox{width: 90%;}
+}

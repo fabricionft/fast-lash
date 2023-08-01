@@ -1,0 +1,113 @@
+.containerDetalhesAgendamento{
+  width: 100%;
+  min-height: 100px;
+  height: auto;
+  margin: 40px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+  border-radius: 10px;
+  background: var(--formularios);
+}
+
+.margemDetalhesAgendamento{
+  width: 92.5%;
+  margin: 40px 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.dadosPessoais, .dadosAvaliativos{
+  width: 50%;
+}
+
+.conteudo{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/*Dados pessoais*/
+.subtituloConteudo, .subtituloConteudo1{
+  color: var(--elementos);
+  font-weight: bold;
+}
+
+.subtituloConteudo1{margin-top: 30px;}
+.textoConteudo{margin: 5px 0 20px 0; width: 80%}
+
+/*Dados avaliativos*/
+.linhaPergunta{
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.pergunta, .resposta{
+  display: flex;
+  width: 85%;
+  align-items: center;
+}
+
+.resposta{
+  width: 15%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.respostaSelecionada{
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  background: rgb(24, 255, 170);
+}
+
+.vermelho{
+  background: rgb(255, 62, 62);
+}
+
+/*Botoes*/
+.botoesDetalhesAgendamento{
+  width: 100%;
+  display: flex;
+  justify-content: left;
+  margin: 10px 0 0 0
+}
+
+.btnDetalhesAgendamento{
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--elementos);
+  border-radius: 7.5px;
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.margem{margin-bottom: 25px;}
+
+@media screen and (max-width: 800px){
+  .margemDetalhesAgendamento{
+      flex-direction: column;
+      width: 90%;
+  }
+
+  .dadosAvaliativos, .dadosPessoais{
+      width: 100%;
+  }
+
+  .linhaPergunta:nth-child(1){margin-top: 15px;}
+}
+
+@media screen and (max-width: 600px){
+  .botoesDetalhesAgendamento{
+    flex-direction: column;
+  }
+
+  .btnDetalhesAgendamento{width: 100%; margin-top: 20px;}
+}

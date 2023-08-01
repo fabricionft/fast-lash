@@ -1,0 +1,103 @@
+.formularioAlterarData{
+  width: 300px;
+  height: 350px;
+  background: var(--formularios);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 7.5%), 0 8px 16px rgb(0 0 0 / 7.5%);
+}
+.iconFechar{
+  width: 25px;
+  position: absolute;
+  right: 15px;
+  top: 20px;
+  cursor: pointer;
+}
+
+.etapaFormularioAlterarData{
+  width: 87.5%;
+  height: 97.5%;
+  margin: 30px 0;
+  justify-content: space-between;
+}
+
+.cabecalhoFormulario, .conteudoFormulario, .botoesFormulario{
+  width: 100%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+}
+
+.conteudoFormulario{
+  height: 70%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.botoesFormulario{
+  height: 20%;
+  justify-content: right;
+}
+
+/*Header*/
+.textoHeaderFormulario{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 20px;
+  color: var(--titulos);
+  font-weight: bold;
+  margin: 0;
+}
+
+/*Content*/
+.divisor2{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.btnConcluirCadastro{
+  width: 120px;
+  height: 40px;
+  border-radius: 7.5px;
+  background: rgb(15, 227, 142);
+}
+
+.btnConcluirCadastro:hover{
+  background: rgb(2, 199, 120);
+}
+
+
+@media screen and (max-width: 450px){
+  .formularioAlterarData{
+      width: 100%;
+      height: 350px;
+  }
+
+  /*Os 3 elementos principais*/
+  .cabecalhoFormulario{
+      height: 7.5%;
+  }
+
+  .conteudoFormulario{
+      height: 82.5%;
+      flex-direction: column;
+      justify-content: center;
+  }
+  
+  .botoesFormulario{
+      height: 10%;
+  }
+
+  .formularioAgenda .botoesFormulario{
+      height: 12.5%;
+      align-items: flex-start;
+  }
+
+  .divisor2:nth-child(1){margin-bottom: 20px;}
+}

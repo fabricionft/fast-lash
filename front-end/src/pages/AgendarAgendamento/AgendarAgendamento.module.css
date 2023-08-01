@@ -1,0 +1,60 @@
+.linhaCep{
+  width: calc(100%);
+  height: 40px;
+  position: relative;
+}
+
+.btnBuscar{
+  width: 80px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+}
+
+.linhaDataNascimento{
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.selectDataNascimento{
+  width: 30%;
+}
+
+.textareaDetalhe{
+  padding-top: 15px;
+  height: 90px;
+}
+
+.btnProximo, .btnAnterior, .btnConcluirCadastro{
+  width: 130px;
+  height: 40px;
+
+}
+
+.btnAnterior{
+  margin-right: 10px;
+}
+
+.btnConcluirCadastro{
+  background: rgb(15, 227, 142);
+}
+
+.btnConcluirCadastro:hover{
+  background: rgb(2, 199, 120);
+}
+
+
+@media screen and (max-width: 700px){
+  /*Footer*/
+  .btnProximo, .btnAnterior, .btnConcluirCadastro{
+      width: 47.5%;
+      margin: 0;
+  }
+
+  .btnAnterior{
+      margin-right: auto;
+  }
+}
