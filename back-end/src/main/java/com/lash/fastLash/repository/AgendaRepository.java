@@ -11,8 +11,6 @@ public interface AgendaRepository extends JpaRepository<AgendaModel, Long> {
 
     List<AgendaModel> findAllByOrderByDataAsc();
 
-    Optional<AgendaModel> findByCodigo(Long codigo);
-
     Optional<AgendaModel> findByData(String data);
 
     @Query(value = "select a from Agenda a inner join a.agendamentos ag inner join ag.procedimento p where a.data = :data and p.horario = :horario")

@@ -31,27 +31,26 @@ public class AgendaController {
 
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> adcionarAgendamentoNaAgenda(@RequestBody AgendaRequestDTO agendaRequest){
-        return  new ResponseEntity<>(agendaService.adcionarAgendamentoNaAgenda(agendaRequest), HttpStatus.CREATED);
+    public ResponseEntity<?> adcionarProcedimentoDeAgendamentoNaAgenda(@RequestBody AgendaRequestDTO agendaRequest){
+        return  new ResponseEntity<>(agendaService.adcionarProcedimentoDeAgendamentoNaAgenda(agendaRequest), HttpStatus.CREATED);
     }
 
     @PutMapping
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> alterarAgendamentoDaAgenda(@RequestBody AgendaRequestDTO agendaRequest){
-        return  new ResponseEntity<>(agendaService.alterarAgendamentoDaAgenda(agendaRequest), HttpStatus.CREATED);
+    public ResponseEntity<?> alterarProcedimento(@RequestBody AgendaRequestDTO agendaRequest){
+        return  new ResponseEntity<>(agendaService.alterarProcedimento(agendaRequest), HttpStatus.CREATED);
     }
 
-    @PutMapping(path = "/alterarDiaEHorario/{codigoAgendamento}")
+    @PutMapping(path = "/alterarDiaEHorario")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> alterarDiaEHorarioDeAgendamentoDaAgenda(@PathVariable Long codigoAgendamento,
-                                                                     @RequestBody AgendaRequestDTO agendaRequest){
-        return  new ResponseEntity<>(agendaService.alterarDiaEHorarioDeAgendamentoDaAgenda(codigoAgendamento, agendaRequest), HttpStatus.CREATED);
+    public ResponseEntity<?> alterarDiaEHorarioDeProcedimentoDaAgendaa(@RequestBody AgendaRequestDTO agendaRequest){
+        return  new ResponseEntity<>(agendaService.alterarDiaEHorarioDeProcedimentoDaAgenda(agendaRequest), HttpStatus.CREATED);
     }
 
     @DeleteMapping(path = "/removerAgendamento/{codigo}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> removerAgendamentoDaAgenda(@PathVariable Long codigo){
-        return new ResponseEntity<>(agendaService.removerAgendamentoDaAgenda(codigo), HttpStatus.OK);
+    public ResponseEntity<?> removerProcedimentoDeAgendamentoDaAgenda(@PathVariable Long codigo){
+        return new ResponseEntity<>(agendaService.removerProcedimentoDeAgendamentoDaAgenda(codigo), HttpStatus.OK);
     }
 
     @DeleteMapping

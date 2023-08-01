@@ -1,7 +1,5 @@
 package com.lash.fastLash.dto.Request;
 
-import com.lash.fastLash.model.ProcedimentoModel;
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 

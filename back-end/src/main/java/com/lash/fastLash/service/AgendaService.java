@@ -7,6 +7,7 @@ import com.lash.fastLash.model.AgendamentoModel;
 import com.lash.fastLash.model.ProcedimentoModel;
 import com.lash.fastLash.repository.AgendaRepository;
 import com.lash.fastLash.repository.AgendamentoRepository;
+import com.lash.fastLash.repository.ProcediemntoRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,92 +26,18 @@ public class AgendaService {
     private AgendamentoRepository agendamentoRepository;
 
     @Autowired
-    private ModelMapper modelMapper;
+    private ProcediemntoRepository procedimentorepository;
 
-    SimpleDateFormat formatar = new SimpleDateFormat("dd/MM/yyyy");
+    @Autowired
+    private ModelMapper modelMapper;
 
 
     public List<AgendaModel> listarAgendas(){
-        List<AgendaModel> agendas = agendaRepository.findAllByOrderByDataAsc();
-        List<AgendaModel> agendasNaoVazias = new ArrayList<>();
-        for(AgendaModel agenda: agendas){
-            if(agenda.getAgendamentos().size() > 0) agendasNaoVazias.add(agenda);
-        }
-        return agendasNaoVazias;
-    }
-
-    public AgendaModel adcionarAgendamentoNaAgenda(AgendaRequestDTO agendaRequest){
-        AgendamentoModel agendamento = buscarAgendamentoPorCodigo(agendaRequest.getCodigoAgendamento());
-        AgendaModel agenda = (agendaRepository.findByData(agendaRequest.getData()).isPresent())
-                           ? agendaRepository.findByData(agendaRequest.getData()).get() : new AgendaModel();
-
-        if(agendamento.getStatus().equals("Concluido") || agendamento.getStatus().equals("Agendado"))
-            throw new RequestException("Você não pode agendar horário para um agendamento já agendado/concluído!");
-
-        if(agendaRepository.buscarHorarioEmDeterminadoDia(agendaRequest.getData(), agendaRequest.getHorario()).isPresent())
-            throw new RequestException("Desculpe, este horário já está ocupado!");
-
-        ProcedimentoModel procedimento = modelMapper.map(agendaRequest, ProcedimentoModel.class);
-        procedimento.setValor(calulcarValorProcedimento(procedimento.getMapping()));
-        agendamento.setProcedimento(procedimento);
-        agendamento.setStatus("Agendado");
-
-        if(agenda.getCodigo() != null) agenda.getAgendamentos().add(agendamento);
-        else{
-            agenda = modelMapper.map(agendaRequest, AgendaModel.class);
-            agenda.getAgendamentos().add(agendamento);
-        }
-
-        return agendaRepository.save(agenda);
-    }
-
-    public AgendamentoModel alterarAgendamentoDaAgenda(AgendaRequestDTO agendaRequest){
-        AgendamentoModel agendamento = buscarAgendamentoPorCodigo(agendaRequest.getCodigoAgendamento());
-
-        ProcedimentoModel procedimento = modelMapper.map(agendaRequest, ProcedimentoModel.class);
-        procedimento.setDia(agendamento.getProcedimento().getDia());
-        procedimento.setHorario(agendamento.getProcedimento().getHorario());
-        procedimento.setValor(calulcarValorProcedimento(procedimento.getMapping()));
-        agendamento.setProcedimento(procedimento);
-
-        return  agendamentoRepository.save(agendamento);
-    }
-
-    public AgendamentoModel alterarDiaEHorarioDeAgendamentoDaAgenda(Long codigoAgendamento, AgendaRequestDTO agendaRequest){
-        AgendamentoModel agendamento = buscarAgendamentoPorCodigo(codigoAgendamento);
-        AgendaModel agenda = (agendaRepository.findByData(agendaRequest.getDia()).isPresent())
-                           ? agendaRepository.findByData(agendaRequest.getDia()).get() : new AgendaModel();
-
-        if(agendaRepository.buscarHorarioEmDeterminadoDia(agendaRequest.getDia(), agendaRequest.getHorario()).isEmpty()){
-            agendamento.getProcedimento().setDia(agendaRequest.getDia());
-            agendamento.getProcedimento().setHorario(agendaRequest.getHorario());
-
-            if(agenda.getCodigo() != null) agenda.getAgendamentos().add(agendamento);
-            else{
-                agenda = new AgendaModel(
-                    agendamento.getCodigo(),
-                    agendaRequest.getDia(),
-                    agendaRequest.getDiaDaSemana(),
-                    agendamento
-                );
-            }
-
-            agendaRepository.save(agenda);
-            return  agendamentoRepository.save(agendamento);
-        }else throw new RequestException("Desculpe, este horário já está ocupado!");
-    }
-
-    public AgendaModel removerAgendamentoDaAgenda(Long codigoAgendamento){
-        AgendaModel agenda = buscarAgendaPorCodigoDeAgendamento(codigoAgendamento);
-        AgendamentoModel agendamento = buscarAgendamentoPorCodigo(codigoAgendamento);
-        agendamento.setStatus("Pendente");
-        agenda.getAgendamentos().remove(agendamento);
-        return  agendaRepository.save(agenda);
+        return agendaRepository.findAllByOrderByDataAsc();
     }
 
     public List<String> buscarHorariosDisponiveis(String data, String diaDaSemana){
-        if(diaDaSemana.toUpperCase().equals("SÁB"))
-            throw new RequestException("Você não pode agendar um atendimento para sabádos");
+        validarDatas(data, diaDaSemana);
 
         Double inicio = (diaDaSemana.toUpperCase().equals("DOM")) ? 8.0 : 9.0;
         Double fim = (diaDaSemana.toUpperCase().equals("DOM")) ? 12.5 : 19.0;
@@ -125,13 +52,92 @@ public class AgendaService {
         return  horarios;
     }
 
-    public String excluirAgendas(){
-        List<AgendaModel> agendas = agendaRepository.findAll();
-        for(AgendaModel agenda: agendas){
-            for(AgendamentoModel agendamento: agenda.getAgendamentos()){
-                if(agendamento.getStatus().equals("Agendado")){
-                    agendamento.setStatus("Pendente");
-                    agendamentoRepository.save(agendamento);
+    public AgendaModel adcionarProcedimentoDeAgendamentoNaAgenda(AgendaRequestDTO agendaRequest){
+        Optional<AgendaModel> agendaExistente = agendaRepository.findByData(agendaRequest.getData());
+        AgendamentoModel agendamento = buscarAgendamentoPorCodigo(agendaRequest.getCodigoAgendamento());
+
+        if(agendamento.getStatus().equals("Concluido") || agendamento.getStatus().equals("Agendado"))
+            throw new RequestException("Você não pode agendar horário para um agendamento já agendado/concluído!");
+
+        if(agendaRepository.buscarHorarioEmDeterminadoDia(agendaRequest.getData(), agendaRequest.getHorario()).isPresent())
+            throw new RequestException("Desculpe, este horário já está ocupado!");
+
+        ProcedimentoModel procedimento = preencherProcedimento(agendaRequest);
+        agendamento.setProcedimento(procedimento);
+        agendamento.setStatus("Agendado");
+
+        if(agendaExistente.isPresent()){
+            agendaExistente.get().getAgendamentos().add(agendamento);
+            return  agendaRepository.save(agendaExistente.get());
+        }
+        else{
+            AgendaModel agenda = new AgendaModel(
+                null,
+                agendaRequest.getData(),
+                agendaRequest.getDiaDaSemana(),
+                agendamento
+            );
+            return agendaRepository.save(agenda);
+        }
+    }
+
+    public ProcedimentoModel alterarProcedimento(AgendaRequestDTO agendaRequest){
+        ProcedimentoModel procedimento = buscarProcedimentoPorCodigoAgendamento(agendaRequest.getCodigoAgendamento());
+
+        if(!(procedimento.getData().equals(agendaRequest.getData()) && procedimento.getDiaDaSemana().equals(agendaRequest.getDiaDaSemana()) && procedimento.getHorario().equals(agendaRequest.getHorario())))
+            throw new RequestException("Você não pode alterar a data e horário da agenda/procedimento através desta função!");
+
+        ProcedimentoModel procedimentoAtualizado = preencherProcedimento(agendaRequest);
+        return  procedimentorepository.save(procedimentoAtualizado);
+    }
+
+    public AgendamentoModel alterarDiaEHorarioDeProcedimentoDaAgenda(AgendaRequestDTO agendaRequest){
+        AgendamentoModel agendamento = buscarAgendamentoPorCodigo(agendaRequest.getCodigoAgendamento());
+        AgendaModel agenda = (agendaRepository.findByData(agendaRequest.getData()).isPresent())
+                           ? agendaRepository.findByData(agendaRequest.getData()).get() : new AgendaModel();
+
+        if(agendaRepository.buscarHorarioEmDeterminadoDia(agendaRequest.getData(), agendaRequest.getHorario()).isEmpty()){
+            validarDatas(agendaRequest.getData(), agendaRequest.getDiaDaSemana());
+
+            agendamento.getProcedimento().setData(agendaRequest.getData());
+            agendamento.getProcedimento().setHorario(agendaRequest.getHorario());
+
+            AgendaModel agendaAtual = buscarAgendaPorCodigoDeAgendamento(agendamento.getCodigo());
+            agendaAtual.getAgendamentos().remove(agendamento);
+
+            if(agenda.getCodigo() != null) agenda.getAgendamentos().add(agendamento);
+            else{
+                excluirAgendasVazias();
+                agenda = new AgendaModel(
+                    null,
+                    agendaRequest.getData(),
+                    agendaRequest.getDiaDaSemana(),
+                    agendamento
+                );
+            }
+
+            agendaRepository.save(agenda);
+            return  agendamentoRepository.save(agendamento);
+        }else throw new RequestException("Desculpe, este horário já está ocupado!");
+    }
+
+    public String removerProcedimentoDeAgendamentoDaAgenda(Long codigoAgendamento){
+        AgendaModel agenda = buscarAgendaPorCodigoDeAgendamento(codigoAgendamento);
+        AgendamentoModel agendamento = buscarAgendamentoPorCodigo(codigoAgendamento);
+
+        excluirProcedimentoDeUmAgendamento(agendamento);
+
+        agenda.getAgendamentos().remove(agendamento);
+        excluirAgendasVazias();
+
+        return "Agendamento removido da agenda com sucesso!";
+    }
+
+    public String excluirAgendas() {
+        for (AgendaModel agenda : agendaRepository.findAll()) {
+            for (AgendamentoModel agendamento : agenda.getAgendamentos()) {
+                if (agendamento.getStatus().equals("Agendado")) {
+                    excluirProcedimentoDeUmAgendamento(agendamento);
                 }
             }
         }
@@ -139,17 +145,8 @@ public class AgendaService {
         return "Agendas excluídas com sucesso!";
     }
 
-    private Double calulcarValorProcedimento(String mapping){
-        if(mapping.equals("A")) return 75.00;
-        else return 50.00;
-    }
-
-    //Buscas
-    private AgendaModel buscarAgendaPorCodigo(Long codigo){
-        return agendaRepository.findByCodigo(codigo)
-                .orElseThrow(() -> new RequestException("Agenda inexistente"));
-    }
-
+    
+    //Métodos privados
     private AgendaModel buscarAgendaPorCodigoDeAgendamento(Long codigo){
         return  agendaRepository.buscarAgendaPorCodigoDeAgendamento(codigo)
                 .orElseThrow(() -> new RequestException("Agenda inexistente"));
@@ -157,6 +154,59 @@ public class AgendaService {
 
     private AgendamentoModel buscarAgendamentoPorCodigo(Long codigo){
         return  agendamentoRepository.findByCodigo(codigo)
-                .orElseThrow(() -> new RequestException("Usuário inexistente"));
+                .orElseThrow(() -> new RequestException("Agendamento inexistente"));
+    }
+
+    private ProcedimentoModel buscarProcedimentoPorCodigoAgendamento(Long codigoAgendamento){
+        return  procedimentorepository.findByCodigoAgendamento(codigoAgendamento)
+                .orElseThrow(() -> new RequestException("Procedimento inexistente"));
+    }
+
+    private Double calcularValorDeProcedimento(String mapping){
+        return (mapping.equals("aindaNaofoiDefinido")) ? 50.0 : 70.0;
+    }
+
+    private ProcedimentoModel preencherProcedimento(AgendaRequestDTO agendaRequest){
+        validarDatas(agendaRequest.getData(), agendaRequest.getDiaDaSemana());
+
+        ProcedimentoModel procedimento = (procedimentorepository.findByCodigoAgendamento(agendaRequest.getCodigoAgendamento()).isPresent()) ?
+                buscarProcedimentoPorCodigoAgendamento(agendaRequest.getCodigoAgendamento())
+                : new ProcedimentoModel();
+
+        procedimento = modelMapper.map(agendaRequest, ProcedimentoModel.class);
+        procedimento.setValor(calcularValorDeProcedimento(procedimento.getMapping()));
+        procedimento.setFinalizado(false);
+
+        return  procedimento;
+    }
+
+    private void validarDatas (String data, String diaDaSemana){
+        Date dataConvertida;
+
+        try {
+            dataConvertida = new SimpleDateFormat("yyyy-MM-dd").parse(data);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+
+        if(dataConvertida.compareTo(new Date()) == -1)
+            throw new RequestException("Você não pode agendar um atendimento para o dia atual ou algum dia passado!");
+
+        if(diaDaSemana.toUpperCase().equals("SAB"))
+            throw new RequestException("Você não pode agendar um atendimento para sabádos");
+    }
+
+    private void excluirProcedimentoDeUmAgendamento(AgendamentoModel agendamento){
+        agendamento.setStatus("Pendente");
+        ProcedimentoModel procedimento = agendamento.getProcedimento();
+        agendamento.setProcedimento(null);
+        procedimentorepository.delete(procedimento);
+    }
+
+    private void excluirAgendasVazias(){
+        for(AgendaModel agenda: agendaRepository.findAll()){
+            if(agenda.getAgendamentos().size() == 0) agendaRepository.delete(agenda);
+            else agendaRepository.save(agenda);
+        }
     }
 }

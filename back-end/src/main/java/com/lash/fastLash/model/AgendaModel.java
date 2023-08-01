@@ -1,13 +1,11 @@
 package com.lash.fastLash.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Table(name = "agendas")
@@ -21,7 +19,10 @@ public class AgendaModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
 
+    @Column(length = 12, nullable = false)
     private String data;
+
+    @Column(length = 6, nullable = false)
     private String diaDaSemana;
 
     @OneToMany

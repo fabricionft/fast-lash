@@ -39,12 +39,6 @@ public class AgendamentoController {
         return new ResponseEntity<>(agendamentoService.buscarProcedimentoPorCodigo(codigo), HttpStatus.OK);
     }
 
-    @GetMapping(path = "/nome/{nome}")
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> buscarAgendamentoPorNome(@PathVariable String nome) {
-        return new ResponseEntity<>(agendamentoService.buscarAgendamentoPorNome(nome), HttpStatus.OK);
-    }
-
     @PostMapping
     public ResponseEntity<?> salvarAgendamento(@RequestBody AgendamentoRequestDTO agendamentoRequest) {
         AgendamentoModel agendamento = modelMapper.map(agendamentoRequest, AgendamentoModel.class);
@@ -54,7 +48,7 @@ public class AgendamentoController {
     @PutMapping(path = "/alterarStatus/{codigo}/{acao}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> alterarStatusAgendamento(@PathVariable Long codigo,
-                                                      @PathVariable Integer acao){
+                                                      @PathVariable String acao){
         return  new ResponseEntity<>(agendamentoService.alterarStatusAgendamento(codigo, acao), HttpStatus.OK);
     }
 

@@ -6,6 +6,7 @@ import com.lash.fastLash.model.AgendamentoModel;
 import com.lash.fastLash.model.ProcedimentoModel;
 import com.lash.fastLash.repository.AgendaRepository;
 import com.lash.fastLash.repository.AgendamentoRepository;
+import com.lash.fastLash.repository.ProcediemntoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,9 +23,12 @@ public class AgendamentoService {
     @Autowired
     private AgendamentoRepository agendamentoRepository;
 
+    @Autowired
+    private ProcediemntoRepository procediemntoRepository;
+
 
     public List<AgendamentoModel> listarAgendamentos(){
-        return  agendamentoRepository.findAll();
+        return  agendamentoRepository.findAllByOrderByCodigoDesc();
     }
 
     public AgendamentoModel buscarAgendamentoPorCodigo(Long codigo){
@@ -32,13 +36,8 @@ public class AgendamentoService {
                 .orElseThrow(() -> new RequestException("Agendamento inexistente!"));
     }
 
-    public List<AgendamentoModel> buscarAgendamentoPorNome(String nome){
-        return agendamentoRepository.buscarAgendamentoPorNome(nome);
-    }
-
     public ProcedimentoModel buscarProcedimentoPorCodigo(Long codigo){
         AgendamentoModel agendamento = buscarAgendamentoPorCodigo(codigo);
-
         return  agendamento.getProcedimento();
     }
 
@@ -51,24 +50,47 @@ public class AgendamentoService {
         return agendamentoRepository.save(agendamento);
     }
 
-    public AgendamentoModel alterarStatusAgendamento(Long codigo, Integer acao){
+    public AgendamentoModel alterarStatusAgendamento(Long codigo, String acao){
         AgendamentoModel agendamento = buscarAgendamentoPorCodigo(codigo);
 
-        if ((acao.equals(1))){
-            AgendaModel agenda = agendaRepository.buscarAgendaPorCodigoDeAgendamento(codigo)
-                        .orElseThrow(() -> new RequestException("Este agendamento não faz parte de uma agenda"));
-
+        if(acao.equals("concluir")){
+            AgendaModel agenda = buscarAgendaPorCodigoDeAgendamento(agendamento.getCodigo());
             agenda.getAgendamentos().remove(agendamento);
-            agendaRepository.save(agenda);
+            excluirAgendasVazias();
+
             agendamento.setStatus("Concluido");
+            agendamento.getProcedimento().setFinalizado(true);
         }
-        else agendamento.setStatus("Pendente");
+        else if(acao.equals("pendenciar")) excluirProcedimentoDeUmAgendamento(agendamento);
+        else throw new RequestException("Ação inválida!");
 
         return agendamentoRepository.save(agendamento);
     }
 
     public String excluirAgendamentos(){
         agendamentoRepository.deleteAll();
+        excluirAgendasVazias();
         return "Todos agendamentos foram excluídos com sucesso!";
+    }
+
+
+    //Métodos privados
+    private void excluirAgendasVazias(){
+        for(AgendaModel agenda: agendaRepository.findAll()){
+            if(agenda.getAgendamentos().size() == 0) agendaRepository.delete(agenda);
+            else agendaRepository.save(agenda);
+        }
+    }
+
+    private void excluirProcedimentoDeUmAgendamento(AgendamentoModel agendamento){
+        agendamento.setStatus("Pendente");
+        ProcedimentoModel procedimento = agendamento.getProcedimento();
+        agendamento.setProcedimento(null);
+        procediemntoRepository.delete(procedimento);
+    }
+
+    private AgendaModel buscarAgendaPorCodigoDeAgendamento(Long codigo){
+        return  agendaRepository.buscarAgendaPorCodigoDeAgendamento(codigo)
+                .orElseThrow(() -> new RequestException("Este agendamento não faz parte de uma agenda"));
     }
 }

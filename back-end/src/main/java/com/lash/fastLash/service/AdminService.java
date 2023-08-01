@@ -34,12 +34,12 @@ public class AdminService {
         return adminRepository.save(admin);
     }
 
-    public LoginResponseDTO fazerLogin(String usuario, String senha){
-        if(validarSenha(usuario, senha)){
-            AdminModel admin = buscarUsuarioPorUsername(usuario);
-            return  new LoginResponseDTO(
+    public LoginResponseDTO fazerLogin(AdminModel admin){
+        if(validarSenha(admin.getUsuario(), admin.getSenha())){
+            AdminModel adminLogado = buscarUsuarioPorUsername(admin.getUsuario());
+            return new LoginResponseDTO(
                 tokenService.gerarToken(admin),
-                admin.getRole()
+                adminLogado.getRole()
             );
         }else throw new RequestException("Credenciais incorretas!");
     }
@@ -53,7 +53,7 @@ public class AdminService {
     }
 
 
-    //Validações
+    //Métodos privados
     private boolean validarSenha(String usuario, String senha){
         return (passwordEncoder.matches(senha, buscarUsuarioPorUsername(usuario).getSenha()));
     }

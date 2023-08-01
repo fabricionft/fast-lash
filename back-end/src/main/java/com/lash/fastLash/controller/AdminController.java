@@ -35,10 +35,9 @@ public class AdminController {
         return new ResponseEntity<>(converterAdminEmAdminResponseDTO(admin), HttpStatus.CREATED);
     }
 
-    @PostMapping(path = "/login/{usuario}/{senha}")
-    public ResponseEntity<?> fazerLogin(@PathVariable String usuario,
-                                        @PathVariable String senha){
-        return new ResponseEntity<>(adminService.fazerLogin(usuario, senha), HttpStatus.OK);
+    @PostMapping(path = "/login")
+    public ResponseEntity<?> fazerLogin(@RequestBody AdminRequestDTO adminRequest){
+        return new ResponseEntity<>(adminService.fazerLogin(converterAdminRequestDTOEmAdmin(adminRequest)), HttpStatus.OK);
     }
 
     @PutMapping(path = "alterarRole/{codigo}/{senha}")

@@ -10,10 +10,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
+@Table(name = "admins")
 @Getter
 @Setter
-@Table(name = "admins")
-@Entity
+@Entity(name = "Admin")
 public class AdminModel implements UserDetails {
 
     @Id

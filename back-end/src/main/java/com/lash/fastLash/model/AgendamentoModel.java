@@ -42,10 +42,10 @@ public class AgendamentoModel {
     @Column(length = 11, nullable = false)
     private String rg;
 
-    @Column(length = 250, nullable = false)
+    @Column(length = 400, nullable = false)
     private String endereco;
 
-    //Dados avaliativos
+    @Column(length = 8, nullable = false)
     private String[] respostas;
 
     @Column(length = 200, nullable = false)
