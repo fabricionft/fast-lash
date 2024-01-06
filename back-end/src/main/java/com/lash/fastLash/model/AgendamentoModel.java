@@ -44,8 +44,7 @@ public class AgendamentoModel {
 
     @Column(length = 400, nullable = false)
     private String endereco;
-
-    @Column(length = 8, nullable = false)
+    
     private String[] respostas;
 
     @Column(length = 200, nullable = false)

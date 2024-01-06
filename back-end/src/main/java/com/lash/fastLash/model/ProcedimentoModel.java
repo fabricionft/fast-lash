@@ -42,10 +42,8 @@ public class ProcedimentoModel {
     @Column(length = 10, nullable = false)
     private Double valor;
 
-    @Column(length = 6, nullable = false)
     private List<Integer> fiosOlhoEsquerdo;
 
-    @Column(length = 6, nullable = false)
     private List<Integer> fiosOlhoDireito;
 
     @Column(length = 5, nullable = false)
